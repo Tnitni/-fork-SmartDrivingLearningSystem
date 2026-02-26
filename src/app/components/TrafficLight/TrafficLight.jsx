@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { GlobalColor } from '../../../mocks/GlobalVar';
 
 import './TrafficLight.css';
 
 export default function TrafficLight({
-    text = '',
+    text = 'error',
     setRefresh = () => { },
 }) {
     const containerRef = useRef(null);
@@ -46,45 +46,32 @@ export default function TrafficLight({
         <div className='traffic-light-container'>
             <div className={`scene-traffic-light ${text.toLowerCase()}`}
                 ref={containerRef}>
-                {/* <div className='cube'>
-                    <div className='face f1' onClick={() => setRefresh(p => p + 1)}>{text}</div>
-                    <div className='face f2' onClick={() => setRefresh(p => p + 1)}>{text}</div>
-                    <div className='face f3' onClick={() => setRefresh(p => p + 1)}>{text}</div>
-                    <div className='face f4' onClick={() => setRefresh(p => p + 1)}>{text}</div>
-                    <div className='face f5' onClick={() => setRefresh(p => p + 1)}>{text}</div>
-                    <div className='face f6' onClick={() => setRefresh(p => p + 1)}>{text}</div>
-                </div> */}
                 <div className='traffic-light'
                     ref={objectRef}>
                     {[...Array(6)].map((_, i) => (
                         <div
                             key={i}
-                            className={`face f${i + 1} ${i + 1 <= 4 ? 'side-face' : 'updown-face'}`}
+                            className={`face f${i + 1} ${i < 2 ? 'updown-face' : 'side-face'}`}
                             onClick={() => setRefresh(p => p + 1)}
                         >
-                            {[{ color: 'error' }, { color: 'loading' }, { color: 'success' }].map((color, j) => {
-                                return i + 1 <= 4 && i % 2 === 0 && (
-                                    <div
-                                        key={j}
-                                        className={`light ${color.color} ${text.toLowerCase() == color.color ? 'active' : 'inactive'}`}
-                                    >
-                                    </div>
-                                )
-                            })}
-                            {/* {[{ color: 'error' }, { color: 'loading' }, { color: 'success' }].map((color, j) => {
-                                return i + 1 <= 4 && i % 2 === 0 && (
-                                    <>
-                                        {[...Array(6)].map((_, i) => (
-                                            <div
-                                                key={i}
-                                                className={`lt l${i + 1}`}
-                                            >
-                                            </div>
-                                        ))}
-                                    </>
-                                )
-                            })} */}
                         </div>
+                    ))}
+                    {[...Array(2)].map((_, i) => (
+                        [{ color: 'error' }, { color: 'loading' }, { color: 'success' }].map((color, j) => {
+                            return (
+                                <React.Fragment key={j}>
+                                    {[...Array(3)].map((_, k) => (
+                                        <div
+                                            key={k}
+                                            className={`light l${k + 1} ${k < 2 ? 'updown-light' : 'side-light'} ${color.color} ${text.toLowerCase() == color.color ? 'active' : 'inactive'}`}
+                                            style={{ '--i': i, '--j': 1 - j }}
+                                        >
+                                            {/* I{i + 1}-J{j + 1}-K{k + 1} */}
+                                        </div>
+                                    ))}
+                                </React.Fragment>
+                            )
+                        })
                     ))}
                 </div>
             </div>

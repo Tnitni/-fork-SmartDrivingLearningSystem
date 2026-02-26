@@ -11,7 +11,7 @@ export default function Home() {
                 if (prev === 'Loading') return 'Success';
                 return 'Error';
             });
-        }, 1000);
+        }, 2000);
         return () => clearInterval(interval);
     }, []);
     return (
