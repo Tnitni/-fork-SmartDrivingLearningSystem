@@ -1,14 +1,13 @@
 .platform-container {
     width: 100%;
-    overflow: hidden;
     background: linear-gradient(to bottom,
             #020617,
             #0f172a,
             #020617);
 
     .container {
-        padding: 8rem 0;
         position: relative;
+        padding: 8rem 0;
 
         .glow {
             position: absolute;

@@ -1,12 +1,12 @@
 .hero-container {
     width: 100%;
+    background: transparent;
 
     .container {
         position: relative;
         min-height: 100vh;
         display: flex;
         align-items: center;
-        overflow: visible;
         color: white;
 
         .content {

@@ -3,7 +3,6 @@ import './Platform.css';
 
 export default function Platform({
     features = [],
-    testimonials = [],
 }) {
     return (
         <div className='platform-container'>
@@ -43,7 +42,7 @@ export default function Platform({
                                             className='icon-box'
                                             style={{ background: feature.color }}
                                         >
-                                            <Icon className='icon' />
+                                            {/* <Icon className='icon' /> */}
                                         </div>
 
                                         <h3 className='feature-title'>
