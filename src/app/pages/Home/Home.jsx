@@ -5,6 +5,7 @@ import Hero from './Hero';
 import Journey from './Journey';
 import Platform from './Platform';
 import Testimonials from './Testimonials';
+import CTA from './CTA';
 
 export default function Home() {
     const [state, setState] = useState('error');
@@ -120,6 +121,7 @@ export default function Home() {
             <Platform features={features} />
             <Journey steps={steps} />
             <Testimonials testimonials={testimonials} />
+            <CTA />
         </div>
     )
 }
