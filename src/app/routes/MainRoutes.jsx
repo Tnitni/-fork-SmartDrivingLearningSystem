@@ -28,7 +28,7 @@ export default function MainRoutes() {
             <ScrollToTop />
             <Routes>
                 <Route path='/' element={<Header />} >
-                    <Route index element={<StarsBackground />} />
+                    <Route index element={<Home />} />
                     <Route path='core-learning' element={<CoreLearning />} />
                     <Route path='learning-question' element={<LearningQuestion />} />
                     <Route path='learning-sign' element={<LearningSign />} />
