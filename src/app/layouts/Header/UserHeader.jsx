@@ -1,10 +1,15 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/AuthContext/AuthContext';
+import LOGO from '../../assets/Logo.png';
 
 import './UserHeader.css';
 
 export default function UserHeader() {
+    const { logout, user } = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
+    console.log('Header', location.pathname);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const menuItems = [
@@ -20,6 +25,12 @@ export default function UserHeader() {
         { name: 'SIGN', icon: 'sign', path: '/traffic-sign-flip-book' },
         { name: 'ADMIN', icon: 'user', path: '/admin' },
     ];
+
+    // useEffect(() => {
+    //     const UserSession = localStorage.getItem('user');
+    //     if (!UserSession) navigate('/');
+    //     else if (user?.role === 'admin') navigate('/admin/user-management');
+    // }, [user?.id]);
 
     return (
         <nav className='user-header-container'>
