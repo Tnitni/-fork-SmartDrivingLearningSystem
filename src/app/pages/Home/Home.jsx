@@ -4,6 +4,7 @@ import StarsBackground from '../../components/StarsBackground/StarsBackground';
 import Hero from './Hero';
 import Journey from './Journey';
 import Platform from './Platform';
+import Testimonials from './Testimonials';
 
 export default function Home() {
     const [state, setState] = useState('error');
@@ -118,6 +119,7 @@ export default function Home() {
             <Hero stats={stats} />
             <Platform features={features} />
             <Journey steps={steps} />
+            <Testimonials testimonials={testimonials} />
         </div>
     )
 }
