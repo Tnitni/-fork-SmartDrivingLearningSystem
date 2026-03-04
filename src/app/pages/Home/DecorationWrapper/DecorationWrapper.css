@@ -1,0 +1,82 @@
+.car-wrapper {
+    position: absolute;
+
+    .car-3d {
+        width: 180px;
+        height: 120px;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: float3D 6s ease-in-out infinite, rotate3D 20s infinite linear;
+    }
+
+    .car-body {
+        position: relative;
+        width: 160px;
+        height: 70px;
+        background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(59, 130, 246, 0.5), inset 0 -5px 20px rgba(0, 0, 0, 0.3);
+        transform: translateZ(20px);
+    }
+
+    .car-roof {
+        position: absolute;
+        top: -30px;
+        left: 30px;
+        width: 100px;
+        height: 35px;
+        background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4), inset 0 -3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .car-windshield {
+        position: absolute;
+        top: -25px;
+        left: 40px;
+        width: 80px;
+        height: 25px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+        border-radius: 8px 8px 0 0;
+        backdrop-filter: blur(5px);
+    }
+
+    .car-wheel {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: radial-gradient(circle, #1e293b 40%, #475569 100%);
+        border-radius: 50%;
+        bottom: -10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), inset 0 0 8px rgba(255, 255, 255, 0.2);
+        animation: wheelRotate 2s linear infinite;
+    }
+
+    .car-wheel-left {
+        left: 15px;
+    }
+
+    .car-wheel-right {
+        right: 15px;
+    }
+
+    .car-headlight {
+        position: absolute;
+        width: 12px;
+        height: 8px;
+        background: radial-gradient(circle, #fbbf24 0%, #f59e0b 100%);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+        animation: headlightBlink 2s ease-in-out infinite;
+    }
+
+    .car-headlight-left {
+        left: 5px;
+    }
+
+    .car-headlight-right {
+        right: 5px;
+    }
+}

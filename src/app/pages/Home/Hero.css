@@ -18,8 +18,9 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 0.5rem;
+                color: #B3D0F3;
                 padding: 0.8rem 2rem;
-                border-radius: 999px;
+                border-radius: 100px;
                 font-weight: 600;
                 background: linear-gradient(to right,
                         rgba(59, 130, 246, 0.2),
@@ -31,7 +32,7 @@
                 margin-top: 2rem;
 
                 h1 {
-                    font-size: 4rem;
+                    font-size: 6rem;
                     font-weight: 800;
                     line-height: 1.05;
                 }
@@ -45,22 +46,21 @@
             }
 
             .description {
-                margin-top: 2rem;
+                margin: 2rem auto 3rem;
                 font-size: 1.4rem;
                 color: #cbd5e1;
                 max-width: 700px;
-                margin-left: auto;
-                margin-right: auto;
             }
 
             .actions {
-                margin-top: 3rem;
                 display: flex;
-                gap: 1.5rem;
                 justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
                 flex-wrap: wrap;
 
                 button {
+                    color: #fff;
                     padding: 1.2rem 2rem;
                     border-radius: 1rem;
                     font-weight: bold;
@@ -70,7 +70,6 @@
                     display: flex;
                     align-items: center;
                     gap: 20px;
-                    color: white;
                 }
 
                 .primary-btn {
@@ -93,26 +92,29 @@
             }
 
             .stats {
-                margin-top: 6rem;
+                margin: 6rem 0 0;
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-template-columns: repeat(4, minmax(200px, 1fr));
                 gap: 2rem;
 
                 .stat-card {
-                    padding: 2.5rem;
+                    padding: 2rem 2.5rem;
                     border-radius: 1rem;
                     background: rgba(15, 23, 42, 0.7);
+                    box-shadow: 0 0 15px #60A5FA33;
                     border: 1px solid rgba(71, 85, 105, 0.5);
-                    transition: 0.3s;
+                    transition: all 0.3s ease;
 
                     &:hover {
                         border-color: rgba(59, 130, 246, 0.4);
+                        box-shadow: 0 0 15px #60A5FA80;
                         transform: translateY(-5px);
                     }
 
-                    .icon {
+                    i {
                         margin-bottom: 1rem;
-                        font-size: 2rem;
+                        color: #60A5FA;
+                        font-size: 3rem;
                     }
 
                     .value {

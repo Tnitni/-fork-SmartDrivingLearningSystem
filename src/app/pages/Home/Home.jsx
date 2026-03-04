@@ -60,13 +60,6 @@ export default function Home() {
         }
     ];
 
-    const stats = [
-        { icon: 'user', value: '10K+', label: 'Active Learners' },
-        { icon: 'award', value: '95%', label: 'Pass Rate' },
-        { icon: 'target', value: '500+', label: 'Lessons' },
-        { icon: 'shield', value: '100%', label: 'Safe Learning' }
-    ];
-
     const steps = [
         {
             step: '01',
@@ -117,7 +110,7 @@ export default function Home() {
             {/* <TrafficLight text={state} /> */}
 
             <StarsBackground />
-            <Hero stats={stats} />
+            <Hero />
             <Platform features={features} />
             <Journey steps={steps} />
             <Testimonials testimonials={testimonials} />

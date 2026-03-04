@@ -3,9 +3,13 @@ import RunningCar from '../../components/RunningCar/RunningCar';
 
 import './Hero.css';
 
-export default function Hero({
-    stats = [],
-}) {
+export default function Hero() {
+    const stats = [
+        { icon: 'users', value: '10K+', label: 'Active Learners' },
+        { icon: 'award', value: '95%', label: 'Pass Rate' },
+        { icon: 'question-circle', value: '600+', label: 'Questions' },
+        { icon: 'shield', value: '100%', label: 'Safe Learning' }
+    ];
     return (
         <div className='hero-container'>
             <RunningCar />
@@ -38,7 +42,7 @@ export default function Hero({
                     <div className='road-sign-3d'>
                         <div className='road-sign-pole'></div>
                         <div className='road-sign-board'>
-                            {/* <Triangle className='icon' /> */}
+                            <i className='fa-solid fa-exclamation-triangle' />
                         </div>
                     </div>
                 </div>
@@ -64,29 +68,26 @@ export default function Hero({
                         <Link to='/learn'>
                             <button className='primary-btn'>
                                 <i className='fa-solid fa-book-open' />
-                                <span>Start Learning Free</span>
+                                <span>Start Learning</span>
                             </button>
                         </Link>
 
                         <Link to='/simulator'>
                             <button className='secondary-btn'>
                                 <i className='fa-solid fa-gamepad' />
-                                <span>Try 3D Simulator</span>
+                                <span>Try Simulator</span>
                             </button>
                         </Link>
                     </div>
 
                     <div className='stats'>
-                        {stats.map((stat, index) => {
-                            const Icon = stat.icon;
-                            return (
-                                <div key={index} className='stat-card'>
-                                    {/* <Icon className='icon' /> */}
-                                    <div className='value'>{stat.value}</div>
-                                    <div className='label'>{stat.label}</div>
-                                </div>
-                            );
-                        })}
+                        {stats.map((stat, index) => (
+                            <div key={index} className='stat-card'>
+                                <i className={`fa-solid fa-${stat.icon}`} />
+                                <div className='value'>{stat.value}</div>
+                                <div className='label'>{stat.label}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
