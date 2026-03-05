@@ -11,9 +11,9 @@ export default function RoadSignWrapper() {
                         <circle cx='200' cy='280' r='20' fill='#111111' />
                     </svg> */}
                     <svg width='400' height='350' viewBox='0 0 400 350' xmlns='http://www.w3.org/2000/svg'>
-                        <polygon points='200,20 20,350 380,350' fill='#F4C430' stroke='#F4C430' stroke-width='40' stroke-linejoin='round' />
-                        <polygon points='200,20 20,350 380,350' fill='none' stroke='#1A1A1A' stroke-width='16' stroke-linejoin='round' />
-                        <polygon points='192,150 208,150 200,260' fill='none' stroke='#1A1A1A' stroke-width='20' stroke-linejoin='round' />
+                        <polygon points='200,20 20,350 380,350' fill='#F4C430' stroke='#F4C430' strokeWidth='40' strokeLinejoin='round' />
+                        <polygon points='200,20 20,350 380,350' fill='none' stroke='#1A1A1A' strokeWidth='16' strokeLinejoin='round' />
+                        <polygon points='192,150 208,150 200,260' fill='none' stroke='#1A1A1A' strokeWidth='20' strokeLinejoin='round' />
                         <circle cx='200' cy='150' r='18' fill='#1A1A1A' />
                         <circle cx='200' cy='300' r='18' fill='#1A1A1A' />
                     </svg>

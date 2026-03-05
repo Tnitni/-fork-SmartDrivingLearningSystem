@@ -52,12 +52,10 @@ export default function Platform() {
                         <div className='badge'>
                             <span>Complete Training Platform</span>
                         </div>
-
                         <h2 className='title'>
                             <div>Everything You Need</div>
                             <div className='gradient'>To Become a Pro Driver</div>
                         </h2>
-
                         <p className='subtitle'>
                             Six powerful modules working together to transform you from beginner to confident driver
                         </p>
@@ -77,11 +75,7 @@ export default function Platform() {
                                     >
                                         <i className={`fa-solid fa-${feature.icon}`} />
                                     </div>
-
-                                    <h3 className='feature-title'>
-                                        {feature.title}
-                                    </h3>
-
+                                    <h3 className='feature-title'>{feature.title}</h3>
                                     <p className='feature-desc'>
                                         {feature.description}
                                     </p>

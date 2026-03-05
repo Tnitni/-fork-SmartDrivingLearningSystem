@@ -67,6 +67,7 @@
                 margin-bottom: 2rem;
 
                 .gradient {
+                    background-clip: text;
                     background: linear-gradient(to right, #3b82f6, #22d3ee);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
@@ -120,7 +121,7 @@
 
                     i {
                         font-size: 2rem;
-                        color: white;
+                        color: #fff;
                     }
                 }
 
