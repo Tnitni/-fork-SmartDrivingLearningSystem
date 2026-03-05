@@ -80,61 +80,58 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
-        }
-
-        button {
-            display: flex;
             align-items: center;
-            gap: 0.8rem;
-            padding: 1.6rem 3.5rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+            gap: 1.5rem;
 
-        .primary-btn {
-            background: #fff;
-            color: #2563eb;
-            border: none;
-            box-shadow: 0 25px 60px rgba(255, 255, 255, 0.3);
-
-            &:hover {
-                transform: scale(1.05);
-                box-shadow: 0 25px 80px rgba(255, 255, 255, 0.4);
+            button {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                padding: 1.6rem 3.5rem;
+                font-size: 1.2rem;
+                font-weight: 700;
+                border-radius: 1.2rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
             }
 
-            .icon {
-                width: 28px;
-                height: 28px;
-                transition: 0.3s;
+            .primary-btn {
+                background: #fff;
+                color: #2563eb;
+                border: none;
+                box-shadow: 0 25px 60px rgba(255, 255, 255, 0.3);
+
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 25px 80px rgba(255, 255, 255, 0.4);
+                }
+
+                i {
+                    transition: 0.3s;
+                }
+
+                &:hover i {
+                    transform: rotate(12deg);
+                }
             }
 
-            &:hover .icon {
-                transform: rotate(12deg);
-            }
-        }
+            .secondary-btn {
+                background: transparent;
+                border: 2px solid #fff;
+                color: #fff;
 
-        .secondary-btn {
-            background: transparent;
-            border: 3px solid #fff;
-            color: #fff;
+                &:hover {
+                    background: rgba(255, 255, 255, 0.15);
+                    transform: scale(1.05);
+                }
 
-            &:hover {
-                background: rgba(255, 255, 255, 0.15);
-                transform: scale(1.05);
-            }
+                i {
+                    transition: 0.3s;
+                }
 
-            .icon {
-                width: 28px;
-                height: 28px;
-                transition: 0.3s;
-            }
-
-            &:hover .icon {
-                transform: translateY(-4px);
+                &:hover i {
+                    transform: translateY(-4px);
+                }
             }
         }
     }

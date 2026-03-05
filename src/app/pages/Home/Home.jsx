@@ -21,27 +21,6 @@ export default function Home() {
         return () => clearInterval(interval);
     }, []);
 
-    const testimonials = [
-        {
-            name: 'Sarah Johnson',
-            role: 'New Driver',
-            content: 'The simulator helped me build confidence before my actual driving test. Passed on the first try!',
-            rating: 5
-        },
-        {
-            name: 'Michael Chen',
-            role: 'Student',
-            content: 'Best driving learning platform ever! The AI assistant answered all my questions instantly.',
-            rating: 5
-        },
-        {
-            name: 'Emily Rodriguez',
-            role: 'Instructor',
-            content: 'I recommend this to all my students. The practice exams are incredibly realistic.',
-            rating: 5
-        }
-    ];
-
     return (
         <div className='home-container'>
             {/* <TrafficLight text={state} /> */}
@@ -50,7 +29,7 @@ export default function Home() {
             <Hero />
             <Platform />
             <Journey />
-            <Testimonials testimonials={testimonials} />
+            <Testimonials />
             <CTA />
         </div>
     )

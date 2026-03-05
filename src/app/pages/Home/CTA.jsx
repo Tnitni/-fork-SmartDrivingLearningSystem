@@ -15,7 +15,8 @@ export default function CTA() {
                     <div className='content'>
                         <div className='text'>
                             <h2 className='title'>
-                                Ready to Master<br />the Road?
+                                <div>Ready to Master</div>
+                                <div>the Road?</div>
                             </h2>
 
                             <p className='subtitle'>
@@ -30,14 +31,13 @@ export default function CTA() {
                         <div className='actions'>
                             <Link to='/learn'>
                                 <button className='primary-btn'>
-                                    {/* <Zap className='icon' /> */}
+                                    <i className='fa-solid fa-zap'/>
                                     <span>Start Learning Now</span>
                                 </button>
                             </Link>
-
                             <Link to='/dashboard'>
                                 <button className='secondary-btn'>
-                                    {/* <TrendingUp className='icon' /> */}
+                                    <i className='fa-solid fa-arrow-trend-up'/>
                                     <span>View Progress Demo</span>
                                 </button>
                             </Link>

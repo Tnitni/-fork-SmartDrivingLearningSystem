@@ -10,7 +10,7 @@ export default function Footer() {
                     <div className='logo-icon'>
                         <i className='fa-solid fa-gamepad' />
                     </div>
-                    <span className='logo-text'>Smart Drive</span>
+                    <span className='logo-text'>GREENLIGHT</span>
                     <p>
                         Advanced driving training system powered by AI technology.
                         Experience the future of driver education.
