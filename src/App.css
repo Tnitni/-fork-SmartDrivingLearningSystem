@@ -49,7 +49,7 @@ body {
 }
 
 a {
-  color: black;
+  color: #000;
   outline: none;
   text-decoration: none;
 }
@@ -149,7 +149,7 @@ input[type='color']::-webkit-color-swatch {
 
 input[type='file']::-webkit-file-upload-button {
   background: var(--green);
-  color: white;
+  color: #fff;
   border: none;
   padding: 6px 12px;
   cursor: pointer;
@@ -170,7 +170,7 @@ progress::-webkit-progress-value {
 
 ::selection {
   background: #007bff;
-  color: white;
+  color: #fff;
 }
 
 input[type='range']::-webkit-slider-thumb {

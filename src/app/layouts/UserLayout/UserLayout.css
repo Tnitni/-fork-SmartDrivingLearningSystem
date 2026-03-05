@@ -1,6 +1,6 @@
 .user-layout-container {
     min-height: 100vh;
-    color: white;
+    color: #fff;
     overflow-x: hidden;
 
     .main {
@@ -43,7 +43,7 @@
 
                     &.active {
                         background: #2563eb;
-                        color: white;
+                        color: #fff;
                     }
                 }
             }

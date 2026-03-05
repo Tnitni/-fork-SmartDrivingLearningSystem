@@ -38,7 +38,7 @@
                 .no-line {
                     top: 0;
                     height: 0;
-                    /* border-color: orange; */
+                    /* border-color: #ff8000; */
                 }
 
                 .horizon-line {
@@ -48,7 +48,7 @@
                     border-left: 2px solid #ccc;
                     border-radius: 0 0 0 16px;
                     border-color: #ccc;
-                    /* border-color: red; */
+                    /* border-color: #ff0000; */
                     box-sizing: border-box;
                     position: absolute;
                     top: 0;

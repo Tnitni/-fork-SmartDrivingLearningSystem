@@ -11,7 +11,7 @@
     .container {
         position: relative;
         padding: 10rem 0;
-        color: white;
+        color: #fff;
 
         .background {
             position: absolute;
@@ -96,7 +96,7 @@
         }
 
         .primary-btn {
-            background: white;
+            background: #fff;
             color: #2563eb;
             border: none;
             box-shadow: 0 25px 60px rgba(255, 255, 255, 0.3);
@@ -119,8 +119,8 @@
 
         .secondary-btn {
             background: transparent;
-            border: 3px solid white;
-            color: white;
+            border: 3px solid #fff;
+            color: #fff;
 
             &:hover {
                 background: rgba(255, 255, 255, 0.15);
