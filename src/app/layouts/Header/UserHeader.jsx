@@ -14,15 +14,10 @@ export default function UserHeader() {
 
     const menuItems = [
         { name: 'HOME', icon: 'house', path: '/' },
-        { name: 'LEARNING', icon: 'book-open', path: '/core-learning' },
-        { name: 'QUESTION', icon: 'question', path: '/learning-question' },
-        { name: 'SIGN', icon: 'sign', path: '/learning-sign' },
-        { name: 'EXAM', icon: 'copy', path: '/list-exam' },
-        { name: 'VIDEO', icon: 'video', path: '/controlled-video' },
+        { name: 'LEARNING', icon: 'book-open', path: '/learning' },
         { name: 'FORUM', icon: 'message', path: '/forum' },
         { name: 'GROUND', icon: 'map', path: '/three-scene' },
         { name: 'CAR', icon: 'car', path: '/car' },
-        { name: 'SIGN', icon: 'sign', path: '/traffic-sign-flip-book' },
         { name: 'ADMIN', icon: 'user', path: '/admin' },
     ];
 

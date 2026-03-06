@@ -22,6 +22,7 @@ import UserManagement from '../pages/AdminPages/UserManagement/UserManagement.js
 
 import StarsBackground from '../components/StarsBackground/StarsBackground.jsx'
 import UserLayout from '../layouts/UserLayout/UserLayout.jsx'
+import Learning from '../pages/Learning/Learning.jsx'
 
 export default function MainRoutes() {
     return (
@@ -54,14 +55,19 @@ export default function MainRoutes() {
             <Routes>
                 <Route path='/' element={<UserLayout />} >
                     <Route index element={<Home />} />
-                    <Route path='core-learning' element={<CoreLearning />} />
-                    <Route path='learning-question' element={<LearningQuestion />} />
-                    <Route path='learning-sign' element={<LearningSign />} />
-                    <Route path='list-exam' element={<ListExam />} />
-                    <Route path='list-exam/:id' element={<ExamTemp />} />
+                    <Route path='learning' element={<Learning />} />
+                    <Route path='learning/theory-question' element={<CoreLearning />} />
+                    <Route path='learning/question-flashcard' element={<LearningQuestion />} />
+                    <Route path='learning/list-traffic-sign' element={<LearningSign />} />
+                    {/* <Route path='learning/list-traffic-sign/:id' element={<LearningSign />} /> */}
+                    <Route path='learning/traffic-sign-flip-book' element={<TrafficSignFlipBook />} />
+                    <Route path='learning/list-exam' element={<ListExam />} />
+                    <Route path='learning/list-exam/:id' element={<ExamTemp />} />
+                    <Route path='learning/list-simulation' element={<ControlledVideo />} />
+                    {/* <Route path='learning/list-simulation/:id' element={<ControlledVideo />} /> */}
+
                     <Route path='forum' element={<Forum />} />
-                    <Route path='controlled-video' element={<ControlledVideo />} />
-                    <Route path='traffic-sign-flip-book' element={<TrafficSignFlipBook />} />
+
                 </Route>
 
                 <Route path='/three-scene' element={<ThreeScene />} />

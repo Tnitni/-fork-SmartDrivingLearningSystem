@@ -1,15 +1,15 @@
 .user-header-container {
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 50;
+    width: 100%;
     backdrop-filter: blur(14px);
     background: rgba(15, 23, 42, 0.85);
     border-bottom: 1px solid #1e293b;
 
     .nav-wrapper {
         margin: auto;
-        padding: 0 1.5rem;
-        height: 64px;
+        padding: 1rem 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -35,7 +35,7 @@ export default function Footer() {
             </div>
 
             <div className='footer-bottom'>
-                © 2026 <span>Smart Drive</span> Learning System. All rights reserved.
+                © 2026 <span>Smart Driving Learning System</span>. All rights reserved.
             </div>
         </footer>
     )
