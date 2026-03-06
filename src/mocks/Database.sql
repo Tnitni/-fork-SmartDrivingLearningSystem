@@ -457,14 +457,14 @@ CREATE TABLE [ForumComment] ( -- Done
 -- 25.CommentVote OF
 CREATE TABLE [CommentVote] (
     id          UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
-    commentId   UNIQUEIDENTIFIER NOT NULL,
-    userId      UNIQUEIDENTIFIER NOT NULL,
+    forumCommentId  UNIQUEIDENTIFIER NOT NULL,
+    userId          UNIQUEIDENTIFIER NOT NULL,
     createAt    DATETIME2 DEFAULT GETDATE(),
     updateAt    DATETIME2 DEFAULT GETDATE(),
     status      INT DEFAULT 1,
-    FOREIGN KEY (commentId) REFERENCES [ForumComment](id) ON DELETE CASCADE,
+    FOREIGN KEY (forumCommentId) REFERENCES [ForumComment](id) ON DELETE CASCADE,
     FOREIGN KEY (userId) REFERENCES [User](id) ON DELETE CASCADE,
-    UNIQUE (commentId, userId),
+    UNIQUE (forumCommentId, userId),
 );
 
 -- =====================================================
@@ -526,10 +526,11 @@ CREATE TABLE [ReportCategory] (
 -- 30.Report AF
 CREATE TABLE [Report] ( -- Done
     id                  UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    simulationId        UNIQUEIDENTIFIER NULL,
+    forumPostId         UNIQUEIDENTIFIER NULL,
+    forumCommentId      UNIQUEIDENTIFIER NULL,
     questionId          UNIQUEIDENTIFIER NULL,
     reportCategoryId    UNIQUEIDENTIFIER NOT NULL,
-    simulationId        UNIQUEIDENTIFIER NULL,
-    reportedUserId      UNIQUEIDENTIFIER NULL,
     userId              UNIQUEIDENTIFIER NOT NULL,
     title       NVARCHAR(255) NOT NULL,
     content     NVARCHAR(1000) NOT NULL,
@@ -537,10 +538,11 @@ CREATE TABLE [Report] ( -- Done
     createAt    DATETIME2 DEFAULT GETDATE(),
     updateAt    DATETIME2 DEFAULT GETDATE(),
     status      INT DEFAULT 1,
+    FOREIGN KEY (simulationId) REFERENCES [SimulationScenario](id) ON DELETE CASCADE,
+    FOREIGN KEY (forumPostId) REFERENCES [ForumPost](id) ON DELETE CASCADE,
+    FOREIGN KEY (forumCommentId) REFERENCES [ForumComment](id),
     FOREIGN KEY (questionId) REFERENCES [Question](id) ON DELETE CASCADE,
     FOREIGN KEY (reportCategoryId) REFERENCES [ReportCategory](id) ON DELETE CASCADE,
-    FOREIGN KEY (simulationId) REFERENCES [SimulationScenario](id) ON DELETE CASCADE,
-    FOREIGN KEY (reportedUserId) REFERENCES [User](id),
     FOREIGN KEY (userId) REFERENCES [User](id),
 );
 
@@ -548,12 +550,14 @@ CREATE TABLE [Report] ( -- Done
 CREATE TABLE [Resolve] ( -- Done
     id          UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
     reportId    UNIQUEIDENTIFIER NOT NULL,
+    userId      UNIQUEIDENTIFIER NOT NULL,
     title       NVARCHAR(255) NOT NULL,
     content     NVARCHAR(255) NOT NULL,
     createAt    DATETIME2 DEFAULT GETDATE(),
     updateAt    DATETIME2 DEFAULT GETDATE(),
     status      INT DEFAULT 1,
     FOREIGN KEY (reportId) REFERENCES [Report](id) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES [User](id) ON DELETE CASCADE,
 );
 
 -- =====================================================
