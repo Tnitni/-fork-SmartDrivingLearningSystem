@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { answers, questions } from '../../../mocks/DataSample';
+import { QUIZ_DATA } from '../../../mocks/QUIZ_DATA';
 import ListGridButton from '../FlashCard/ListGridButton';
 
 import './CoreLearning.css';
@@ -123,6 +124,18 @@ export default function CoreLearning() {
                     <button className='btn' onClick={() => handleMoveCard('right')}><i className='fa-solid fa-arrow-right'></i></button>
                 </div>
             </div>
+
+            {/* <div>
+                {[...Array(600)].map((_, i) => (
+                    <div key={i} style={{ color: '#000' }}>
+                        {QUIZ_DATA[i + 1]?.answers?.map((a, j) => (
+                            <div key={j}>
+                                <div>{a.correct === true ? 1 : 0}</div>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div> */}
         </div>
     )
 }

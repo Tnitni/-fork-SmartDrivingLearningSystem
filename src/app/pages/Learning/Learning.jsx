@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import StarsBackground from '../../components/StarsBackground/StarsBackground';
 
 import './Learning.css';
-import StarsBackground from '../../components/StarsBackground/StarsBackground';
 
 export default function Learning() {
     const categories = [
@@ -91,7 +91,6 @@ export default function Learning() {
                                         <div className='icon-box'>
                                             <i className={`fa-solid fa-${category.icon}`} />
                                         </div>
-
                                         <div>
                                             <h2>{category.name}</h2>
                                             <p>{category.description}</p>
@@ -105,7 +104,6 @@ export default function Learning() {
                                         <i className='fa-solid fa-book-open' />
                                         <span>{category.type}</span>
                                     </div>
-
                                     <div>
                                         <i className='fa-solid fa-clock' />
                                         <span>{category.time}</span>

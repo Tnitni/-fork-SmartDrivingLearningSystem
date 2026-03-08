@@ -1,11 +1,14 @@
---USE MASTER
-
---DROP DATABASE GREENLIGHT
-
-
---CREATE DATABASE GREENLIGHT
-
---USE GREENLIGHT
+﻿USE master
+GO
+IF DB_ID('GREENLIGHT') IS NOT NULL
+BEGIN
+    DROP DATABASE GREENLIGHT
+END
+GO
+CREATE DATABASE GREENLIGHT
+GO
+USE GREENLIGHT
+GO
 
 IF OBJECT_ID('dbo.[UserNotification]', 'U') IS NOT NULL
     DROP TABLE dbo.[UserNotification];
@@ -79,8 +82,14 @@ IF OBJECT_ID('dbo.[Tag]', 'U') IS NOT NULL
 IF OBJECT_ID('dbo.[Question]', 'U') IS NOT NULL
     DROP TABLE dbo.[Question];
     GO
+IF OBJECT_ID('dbo.[QuestionLesson]', 'U') IS NOT NULL
+    DROP TABLE dbo.[QuestionLesson];
+    GO
 IF OBJECT_ID('dbo.[QuestionChapter]', 'U') IS NOT NULL
     DROP TABLE dbo.[QuestionChapter];
+    GO
+IF OBJECT_ID('dbo.[DrivingLicense]', 'U') IS NOT NULL
+    DROP TABLE dbo.[DrivingLicense];
     GO
 IF OBJECT_ID('dbo.[SimulationSession]', 'U') IS NOT NULL
     DROP TABLE dbo.[SimulationSession];
@@ -253,7 +262,7 @@ CREATE TABLE [QuestionChapter] (
     createAt    DATETIME2 DEFAULT GETDATE(),
     updateAt    DATETIME2 DEFAULT GETDATE(),
     status      INT DEFAULT 1,
-    FOREIGN KEY (drivingLicenseId) REFERENCES [DrivingLicense](id) ON DELETE CASCADE,
+    FOREIGN KEY (drivingLicenseId) REFERENCES [DrivingLicense](id),
 );
 
 -- 11.QuestionLesson AF
@@ -265,13 +274,46 @@ CREATE TABLE [QuestionLesson] (
     createAt    DATETIME2 DEFAULT GETDATE(),
     updateAt    DATETIME2 DEFAULT GETDATE(),
     status      INT DEFAULT 1,
-    FOREIGN KEY (questionChapterId) REFERENCES [QuestionChapter](id) ON DELETE CASCADE,
+    FOREIGN KEY (questionChapterId) REFERENCES [QuestionChapter](id),
+);
+
+-- 31.Vehicle OK
+CREATE TABLE [Vehicle] (
+    id          UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    name        NVARCHAR(255) NOT NULL UNIQUE,
+    description NVARCHAR(255),
+    createAt    DATETIME2 DEFAULT GETDATE(),
+    updateAt    DATETIME2 DEFAULT GETDATE(),
+    status      INT DEFAULT 1,
+);
+
+-- 31.QuestionTopic OK
+CREATE TABLE [QuestionTopic] (
+    id          UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    name        NVARCHAR(255) NOT NULL UNIQUE,
+    description NVARCHAR(255),
+    createAt    DATETIME2 DEFAULT GETDATE(),
+    updateAt    DATETIME2 DEFAULT GETDATE(),
+    status      INT DEFAULT 1,
+);
+
+-- 31.QuestionCategory OK
+CREATE TABLE [QuestionCategory] (
+    id          UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    name        NVARCHAR(255) NOT NULL UNIQUE,
+    description NVARCHAR(255),
+    createAt    DATETIME2 DEFAULT GETDATE(),
+    updateAt    DATETIME2 DEFAULT GETDATE(),
+    status      INT DEFAULT 1,
 );
 
 -- 12.Question AF
 CREATE TABLE [Question] (
     id          UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
-    questionLessonId   UNIQUEIDENTIFIER NOT NULL,
+    questionLessonId    UNIQUEIDENTIFIER NOT NULL,
+    vehicleId           UNIQUEIDENTIFIER NOT NULL,
+    questionTopicId     UNIQUEIDENTIFIER NOT NULL,
+    questionCategoryId  UNIQUEIDENTIFIER NOT NULL,
     parentId            UNIQUEIDENTIFIER NULL,
     content     NVARCHAR(255) NOT NULL,
     image       NVARCHAR(255),
@@ -280,7 +322,10 @@ CREATE TABLE [Question] (
     createAt    DATETIME2 DEFAULT GETDATE(),
     updateAt    DATETIME2 DEFAULT GETDATE(),
     status      INT DEFAULT 1,
-    FOREIGN KEY (questionLessonId) REFERENCES [QuestionLesson](id) ON DELETE CASCADE,
+    FOREIGN KEY (questionLessonId) REFERENCES [QuestionLesson](id),
+    FOREIGN KEY (vehicleId) REFERENCES [Vehicle](id),
+    FOREIGN KEY (questionTopicId) REFERENCES [QuestionTopic](id),
+    FOREIGN KEY (questionCategoryId) REFERENCES [QuestionCategory](id),
     FOREIGN KEY (parentId) REFERENCES [Question](id),
 );
 
