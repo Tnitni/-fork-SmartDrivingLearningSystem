@@ -220,7 +220,6 @@ CREATE TABLE [SimulationScenario] (
     name        NVARCHAR(255) NOT NULL UNIQUE,
     description NVARCHAR(255),
     video       NVARCHAR(255),
-    hint        NVARCHAR(255),
     baseScore   INT NOT NULL,
     totalTime   INT NOT NULL,
     startPoint  INT NOT NULL,
@@ -662,3 +661,6 @@ CREATE TABLE [UserNotification] (
     FOREIGN KEY (notificationId) REFERENCES [Notification](id) ON DELETE CASCADE,
     FOREIGN KEY (userId) REFERENCES [User](id) ON DELETE CASCADE,
 );
+
+INSERT INTO [Role] VALUES (NEWID(), N'Admin', N'Admin', GETDATE(), GETDATE(), 1);
+SELECT * FROM [Role]

@@ -19,6 +19,7 @@ export default function UserHeader() {
         { name: 'GROUND', icon: 'map', path: '/three-scene' },
         { name: 'CAR', icon: 'car', path: '/car' },
         { name: 'ADMIN', icon: 'user', path: '/admin' },
+        { name: 'EXCEL', icon: 'file-excel', path: '/read-excel-data' },
     ];
 
     // useEffect(() => {

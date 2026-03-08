@@ -23,6 +23,8 @@ import UserManagement from '../pages/AdminPages/UserManagement/UserManagement.js
 import StarsBackground from '../components/StarsBackground/StarsBackground.jsx'
 import UserLayout from '../layouts/UserLayout/UserLayout.jsx'
 import Learning from '../pages/Learning/Learning.jsx'
+import ForumPopup from '../pages/Forum/ForumPopup.jsx'
+import ReadExcelData from '../pages/ReadExcelData/ReadExcelData.jsx'
 
 export default function MainRoutes() {
     return (
@@ -66,8 +68,10 @@ export default function MainRoutes() {
                     <Route path='learning/list-simulation' element={<ControlledVideo />} />
                     {/* <Route path='learning/list-simulation/:id' element={<ControlledVideo />} /> */}
 
+                    <Route path='forum-post' element={<ForumPopup />} />
                     <Route path='forum' element={<Forum />} />
 
+                    <Route path='read-excel-data' element={<ReadExcelData />} />
                 </Route>
 
                 <Route path='/three-scene' element={<ThreeScene />} />
