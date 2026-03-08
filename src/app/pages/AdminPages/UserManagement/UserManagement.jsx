@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchData, putData } from '../../../../mocks/CallingAPI';
 import { permissions, rolePermissions, roles, users } from '../../../../mocks/DataSample';
-import { GlobalColor } from '../../../../mocks/GlobalVar';
 import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog';
 import Cube from '../../../components/Cube/Cube';
 import MovingLabelInput from '../../../components/MovingLabelInput/MovingLabelInput';
@@ -274,7 +273,7 @@ export default function UserManagement() {
                         message={`Are you sure you want to ${popupProps.status == 1 ? 'inactive' : 'active'} this user?`}
                         confirm={popupProps.status == 1 ? 'INACTIVE' : 'ACTIVE'}
                         cancel={'CANCEL'}
-                        color={popupProps.status == 1 ? GlobalColor.red + '80' : GlobalColor.green + '80'}
+                        color={popupProps.status == 1 ? '#ff4d4f80' : '#52c41a80'}
                         onConfirm={() => { inactiveUser(popupProps), setPopupProps(null) }}
                         onCancel={() => setPopupProps(null)}
                     />
@@ -286,7 +285,7 @@ export default function UserManagement() {
                         message={`An error has occurred!`}
                         confirm={'OKAY'}
                         cancel={''}
-                        color={GlobalColor.red + '80'}
+                        color={'#ff4d4f80'}
                         onConfirm={() => setErrorFunction(null)}
                         onCancel={() => setErrorFunction(null)}
                     />

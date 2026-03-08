@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { GlobalColor } from '../../../mocks/GlobalVar';
 
 import './TrafficLight.css';
 
@@ -41,7 +40,6 @@ export default function TrafficLight({
         };
     }, []);
 
-    const color = text == 'error' ? GlobalColor.red : (text == 'loading' ? GlobalColor.yellow : (text == 'success' ? GlobalColor.green : ''));
     return (
         <div className='traffic-light-container'>
             <div className={`scene-traffic-light ${text}`}
