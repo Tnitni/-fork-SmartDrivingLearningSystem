@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import PopupContainer from '../../components/PopupContainer/PopupContainer';
 import ForumCard from './ForumCard';
+import ForumPopup from './ForumPopup';
 
 import './Forum.css';
-import PopupContainer from '../../components/PopupContainer/PopupContainer';
-import ForumPopup from './ForumPopup';
 
 export default function Forum() {
     const [FORUMPOSTs, setFORUMPOSTs] = useState([]);
@@ -27,7 +27,6 @@ export default function Forum() {
             <div className='left'></div>
             <div className='center'>
                 <div className='list'>
-                    <div>Hello {selectedPost?.title}</div>
                     {ListPost.map((post, i) => (
                         <React.Fragment key={i}>
                             <ForumCard post={post} setSelectedPost={setSelectedPost} />
