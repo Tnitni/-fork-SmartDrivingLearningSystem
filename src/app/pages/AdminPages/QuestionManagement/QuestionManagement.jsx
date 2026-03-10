@@ -19,7 +19,7 @@ export default function QuestionManagement() {
     const [QUESTIONCATEGORIes, setQUESTIONCATEGORIes] = useState([]);
     const [QUESTIONDIFFICULTYLEVELs, setQUESTIONDIFFICULTYLEVELs] = useState([]);
     const [refresh, setRefresh] = useState(0);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [errorFunction, setErrorFunction] = useState(null);
     const [editing, setEditing] = useState(null);
