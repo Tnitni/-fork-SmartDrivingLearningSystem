@@ -209,6 +209,7 @@ video::-webkit-media-controls-play-button {
 }
 
 .container {
+  min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;

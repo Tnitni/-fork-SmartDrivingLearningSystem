@@ -16,7 +16,7 @@ export default function UserHeader() {
         { name: 'HOME', icon: 'house', path: '/' },
         { name: 'LEARNING', icon: 'book-open', path: '/learning' },
         { name: 'FORUM', icon: 'message', path: '/forum' },
-        { name: 'LICENSE', icon: 'book', path: '/license' },
+        { name: 'LICENSE', icon: 'book', path: '/driving-license' },
 
         { name: 'GROUND', icon: 'map', path: '/three-scene' },
         { name: 'CAR', icon: 'car', path: '/car' },

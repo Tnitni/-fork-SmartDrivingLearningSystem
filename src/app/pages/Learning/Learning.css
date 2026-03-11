@@ -1,8 +1,6 @@
 .learning-container {
     min-height: 100vh;
     padding: 5rem 1rem;
-    position: relative;
-    overflow: hidden;
 
     .content {
         max-width: 1200px;
