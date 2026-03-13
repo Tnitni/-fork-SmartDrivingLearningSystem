@@ -150,37 +150,6 @@
             }
         }
     }
-
-    .empty {
-        text-align: center;
-        padding: 80px 0;
-
-        .empty-icon {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            background: #1e293b80;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: auto auto 24px;
-
-            i {
-                font-size: 2rem;
-                color: #64748b;
-            }
-        }
-
-        h3 {
-            font-size: 1.6rem;
-            color: white;
-            margin: 0 0 .5rem;
-        }
-
-        p {
-            color: #94a3b8;
-        }
-    }
 }
 
 @keyframes spin {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { generateUUID } from 'three/src/math/MathUtils.js';
+import EmptyNotification from '../../components/EmptyNotification/EmptyNotification';
 import StarsBackground from '../../components/StarsBackground/StarsBackground';
 import TrafficLight from '../../components/TrafficLight/TrafficLight';
 import { useAuth } from '../../hooks/AuthContext/AuthContext';
@@ -353,13 +354,10 @@ export default function DrivingLicense() {
             </div>
 
             {DRIVINGLICENSEs?.length === 0 && !loading && (
-                <div className='empty'>
-                    <div className='empty-icon'>
-                        <i className='fa-solid fa-book-open' />
-                    </div>
-                    <h3>No Licenses Available</h3>
-                    <p>Check back soon for available license programs.</p>
-                </div>
+                <EmptyNotification
+                    name={'No Licenses Available'}
+                    description={'Check back soon for available license programs.'}
+                />
             )}
         </div>
     )

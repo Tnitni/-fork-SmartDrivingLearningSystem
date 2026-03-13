@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import EmptyNotification from '../../components/EmptyNotification/EmptyNotification';
 
 import './SelectedChapter.css';
 
@@ -27,13 +28,10 @@ export default function SelectedChapter({
                             </div>
 
                             {chapter.questionLessons.length === 0 ? (
-                                <div className='empty'>
-                                    <div className='empty-icon'>
-                                        <i className='fa-solid fa-book-open' />
-                                    </div>
-                                    <h3>No Lessons Available</h3>
-                                    <p>Lessons for this chapter are coming soon.</p>
-                                </div>
+                                <EmptyNotification
+                                    name={'No Lessons Available'}
+                                    description={'Lessons for this chapter are coming soon.'}
+                                />
                             ) : (
                                 <div className='lesson-grid'>
                                     {chapter.questionLessons?.map((lesson, index_lesson) => (
