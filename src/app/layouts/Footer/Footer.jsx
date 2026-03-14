@@ -7,10 +7,12 @@ export default function Footer() {
         <footer className='footer-container'>
             <div className='footer-wrapper'>
                 <div className='footer-brand'>
-                    <div className='logo-icon'>
-                        <i className='fa-solid fa-gamepad' />
+                    <div className='logo'>
+                        <div className='logo-icon'>
+                            <i className='fa-solid fa-car' />
+                        </div>
+                        <span className='logo-text'>GREENLIGHT</span>
                     </div>
-                    <span className='logo-text'>GREENLIGHT</span>
                     <p>
                         Advanced driving training system powered by AI technology.
                         Experience the future of driver education.
@@ -33,7 +35,6 @@ export default function Footer() {
                     <a href='#'>Contact Us</a>
                 </div>
             </div>
-
             <div className='footer-bottom'>
                 © 2026 <span>Smart Driving Learning System</span>. All rights reserved.
             </div>
