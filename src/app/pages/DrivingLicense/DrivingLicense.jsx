@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { drivingLicense } from '../../../mocks/DataSample';
+import { drivingLicenses } from '../../../mocks/DataSample';
 import EmptyNotification from '../../components/EmptyNotification/EmptyNotification';
 import StarsBackground from '../../components/StarsBackground/StarsBackground';
 import TrafficLight from '../../components/TrafficLight/TrafficLight';
@@ -29,7 +29,7 @@ export default function DrivingLicense() {
                 // const LicenseResponse = await fetchData('licenses', token);
                 // console.log('LicenseResponse', LicenseResponse);
 
-                setDRIVINGLICENSEs(drivingLicense);
+                setDRIVINGLICENSEs(drivingLicenses);
             } catch (error) {
                 setError('Error');
             } finally {

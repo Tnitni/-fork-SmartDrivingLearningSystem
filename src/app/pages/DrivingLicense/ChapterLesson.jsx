@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { generateUUID } from 'three/src/math/MathUtils.js';
 import EmptyNotification from '../../components/EmptyNotification/EmptyNotification';
 import StarsBackground from '../../components/StarsBackground/StarsBackground';
 import TrafficLight from '../../components/TrafficLight/TrafficLight';
 import { useAuth } from '../../hooks/AuthContext/AuthContext';
 import SelectedChapter from './SelectedChapter';
-import { drivingLicense, questionChapter, questionLesson } from '../../../mocks/DataSample';
+import { drivingLicenses, questionChapters, questionLessons } from '../../../mocks/DataSample';
 
 import './ChapterLesson.css';
 
@@ -35,18 +34,17 @@ export default function ChapterLesson() {
                 // setDRIVINGLICENSEs(LicenseResponse);
                 // const LicenseResponse = await fetchData('licenses', token);
                 // console.log('LicenseResponse', LicenseResponse);
-                console.log('questionChapter', questionChapter);
 
-                const QuestionChapters = questionChapter.filter(qc => qc.drivingLicenseId == drivingLicenseId).map(qc => ({
+                const QuestionChapters = questionChapters.filter(qc => qc.drivingLicenseId == drivingLicenseId).map(qc => ({
                     ...qc,
-                    questionLessons: questionLesson.filter(ql => ql.questionChapterId === qc.id),
-                    drivingLicense: drivingLicense.find(dl => dl.id === qc.drivingLicenseId) || null,
+                    questionLessons: questionLessons.filter(ql => ql.questionChapterId === qc.id),
+                    drivingLicense: drivingLicenses.find(dl => dl.id === qc.drivingLicenseId) || null,
                 }));
 
-                console.log('drivingLicense', drivingLicense);
+                console.log('drivingLicense', drivingLicenses);
                 console.log('QuestionChapters', QuestionChapters);
 
-                setDRIVINGLICENSEs(drivingLicense);
+                setDRIVINGLICENSEs(drivingLicenses);
                 setQUESTIONCHAPTERs(QuestionChapters);
             } catch (error) {
                 setError('Error');

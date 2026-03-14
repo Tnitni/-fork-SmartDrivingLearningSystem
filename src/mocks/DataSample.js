@@ -283,12 +283,6 @@ export const users = [
     { id: 4, roleId: 3, name: 'Tin', email: 'tin@example.com', type: 'Vip', status: 1 },
 ];
 
-export const questionChapters = [
-    { id: 1, name: 'Chapter 1', description: 'This is Chapter 1', status: 1 },
-    { id: 2, name: 'Chapter 2', description: 'This is Chapter 2', status: 1 },
-    { id: 3, name: 'Chapter 3', description: 'This is Chapter 3', status: 1 },
-];
-
 export const questionCategories = [
     { id: 1, name: 'Category 1', description: 'This is Category 1', status: 1 },
     { id: 2, name: 'Category 2', description: 'This is Category 2', status: 1 },
@@ -301,7 +295,7 @@ export const questionDifficultyLevels = [
     { id: 3, name: 'Low', description: 'Low difficulty level', status: 1 },
 ];
 
-export const drivingLicense = [
+export const drivingLicenses = [
     { id: 1, name: 'A1', description: 'Description of A1', },
     { id: 2, name: 'A2', description: 'Description of A1', },
     { id: 3, name: 'A3', description: 'Description of A1', },
@@ -310,7 +304,7 @@ export const drivingLicense = [
     { id: 6, name: 'A6', description: 'Description of A1', },
 ];
 
-export const questionChapter = [
+export const questionChapters = [
     { id: 1, name: 'Chapter 1', description: 'Description of Chapter 1', drivingLicenseId: 1 },
     { id: 2, name: 'Chapter 2', description: 'Description of Chapter 2', drivingLicenseId: 1 },
     { id: 3, name: 'Chapter 3', description: 'Description of Chapter 3', drivingLicenseId: 1 },
@@ -328,7 +322,7 @@ export const questionChapter = [
     { id: 15, name: 'Chapter 1', description: 'Description of Chapter 1', drivingLicenseId: 5 },
 ];
 
-export const questionLesson = [
+export const questionLessons = [
     { id: 1, name: 'Lesson 1', description: 'Description of Lesson 1', questionChapterId: 1 },
     { id: 2, name: 'Lesson 2', description: 'Description of Lesson 2', questionChapterId: 1 },
     { id: 3, name: 'Lesson 3', description: 'Description of Lesson 3', questionChapterId: 1 },
