@@ -1,7 +1,8 @@
 .theory-sections-container {
     position: relative;
-    animation-delay: 0.2s;
+    opacity: 0;
     animation: slideInUp 0.4s forwards;
+    animation-delay: 0.2s;
 
     .card {
         position: relative;

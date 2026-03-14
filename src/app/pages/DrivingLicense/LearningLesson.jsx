@@ -7,6 +7,7 @@ import { useAuth } from '../../hooks/AuthContext/AuthContext';
 
 import './LearningLesson.css';
 import TheorySections from './TheorySections';
+import PracticeExams from './PracticeExams';
 
 export default function LicenseLessonDetail() {
     const { user } = useAuth();
@@ -137,14 +138,19 @@ export default function LicenseLessonDetail() {
                     <div className='main'>
                         {/* Theory Sections */}
                         <TheorySections
-                            theorySections={'' }
-                            selectedTheory={'' }
-                            setSelectedTheory={'' }
-                            progress={'' }
-                            markTheoryComplete={ ''}
+                            theorySections={''}
+                            selectedTheory={''}
+                            setSelectedTheory={''}
+                            progress={''}
+                            markTheoryComplete={''}
                         />
 
                         {/* Practice Exams */}
+                        <PracticeExams
+                            exams={[]}
+                            progress={''}
+                            startExam={''}
+                        />
                     </div>
                 </div>
             </div>
