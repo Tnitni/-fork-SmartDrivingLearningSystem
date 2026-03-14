@@ -8,6 +8,7 @@ import { useAuth } from '../../hooks/AuthContext/AuthContext';
 import './LearningLesson.css';
 import TheorySections from './TheorySections';
 import PracticeExams from './PracticeExams';
+import ProgressOverview from './ProgressOverview';
 
 export default function LicenseLessonDetail() {
     const { user } = useAuth();
@@ -152,6 +153,8 @@ export default function LicenseLessonDetail() {
                             startExam={''}
                         />
                     </div>
+
+                    <ProgressOverview progress={{}} />
                 </div>
             </div>
         </div>
