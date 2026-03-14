@@ -10,6 +10,10 @@
 	margin: 0;
 	justify-content: flex-start;
 }
+
+.admin-table .action-buttons button.abb {
+	opacity: 0.6;
+}
 /* Limit lesson content display */
 .lesson-content-ellipsis {
 	display: -webkit-box;
