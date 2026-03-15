@@ -3,8 +3,10 @@
     background: #020617;
     position: relative;
     overflow: hidden;
+    margin: -80px 0 0;
 
     .hero {
+        padding: 80px 0 0;
         position: relative;
         height: 380px;
         background-size: cover;
@@ -34,15 +36,17 @@
             justify-content: center;
 
             .back-btn {
-                color: #93c5fd;
+                width: fit-content;
                 margin: 0 0 32px;
+                color: #93c5fd;
                 font-weight: 500;
                 display: flex;
                 align-items: center;
                 gap: 8px;
+                transition: 0.2s;
 
                 &:hover {
-                    color: #b9daff;
+                    color: #bfdbfe;
                 }
             }
 
@@ -50,7 +54,7 @@
                 font-size: 64px;
                 font-weight: 800;
                 color: white;
-                margin-bottom: 24px;
+                margin: 0 0 24px;
             }
 
             p {

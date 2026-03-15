@@ -9,7 +9,7 @@ export default function UserHeader() {
     const { logout, user } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log('Header', location.pathname);
+    // console.log('Header', location.pathname);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const menuItems = [
@@ -33,14 +33,12 @@ export default function UserHeader() {
     return (
         <nav className='user-header-container'>
             <div className='nav-wrapper'>
-                <div className='logo'>
-                    <Link to='/'>
-                        <div className='logo-icon'>
-                            <i className='fa-solid fa-car' />
-                        </div>
-                        <span className='logo-text'>GREENLIGHT</span>
-                    </Link>
-                </div>
+                <Link to='/'>
+                    <div className='logo-icon'>
+                        <i className='fa-solid fa-car' />
+                    </div>
+                    <span className='logo-text'>GREENLIGHT</span>
+                </Link>
 
                 <div className='nav-links'>
                     {menuItems.map((item, index) => {
@@ -61,11 +59,18 @@ export default function UserHeader() {
                     })}
                 </div>
 
+                {/* ==FIX== */}
+                <div className='user-profile'>
+                    <div className='avatar'>
+                        <img src={'https://media.wired.com/photos/592675f6cefba457b079a0cd/3:2/w_2560%2Cc_limit/SCG003S-FRONTTA.jpg'} alt={user?.name} />
+                    </div>
+                    <span>{user?.name || 'THIS IS USER NAME'}</span>
+                </div>
+
                 <button
                     className='mobile-toggle'
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                    {/* {mobileMenuOpen ? <X /> : <Menu />} */}
                     {mobileMenuOpen ? <i className='fa-solid fa-xmark' /> : <i className='fa-solid fa-bars' />}
                 </button>
             </div>
@@ -73,8 +78,9 @@ export default function UserHeader() {
             {mobileMenuOpen && (
                 <div className='mobile-menu'>
                     {menuItems.map((item, index) => {
-                        const Icon = item.icon;
-                        const isActive = location.pathname === item.path;
+                        const locationPathname = location.pathname;
+                        const itemPath = item.path;
+                        const isActive = (itemPath !== '/' && (locationPathname)?.includes(itemPath)) || (itemPath === '/' && locationPathname === '/');
 
                         return (
                             <Link
@@ -83,7 +89,7 @@ export default function UserHeader() {
                                 onClick={() => setMobileMenuOpen(false)}
                                 className={`mobile-item ${isActive ? 'active' : ''}`}
                             >
-                                <Icon />
+                                <i className={`fa-solid fa-${item.icon}`} />
                                 <span>{item.name}</span>
                             </Link>
                         );
