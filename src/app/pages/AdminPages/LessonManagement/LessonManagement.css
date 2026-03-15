@@ -1,3 +1,18 @@
+/* Status tag for lesson */
+.status-tag {
+	display: inline-block;
+	padding: 2px 12px;
+	border-radius: 12px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #fff;
+}
+.status-active {
+	background: #43a047;
+}
+.status-inactive {
+	background: #e53935;
+}
 /* Vertical action buttons for lesson management */
 .admin-table .action-buttons {
 	display: flex;

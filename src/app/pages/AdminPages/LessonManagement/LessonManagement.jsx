@@ -259,7 +259,9 @@ export default function LessonManagement() {
                     )}
                   </td>
                   <td>
-                    <span>{lesson.status == 1 ? "Active" : "Inactive"}</span>
+                    <span className={lesson.status == 1 ? "status-tag status-active" : "status-tag status-inactive"}>
+                      {lesson.status == 1 ? "Active" : "Inactive"}
+                    </span>
                   </td>
                   <td>
                     <div className="action-buttons">
