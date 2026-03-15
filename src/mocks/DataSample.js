@@ -465,5 +465,11 @@ export const questionLessons = [
     { id: 140, name: 'Lesson 10', description: 'Description of Lesson 10', questionChapterId: 14, content: '<h2>Bài học 10</h2><p>Nội dung bài học 10.</p>', status: 1 },
 ];
 
+export const lessonProgresses = [
+    { id: 1, userId: 1, questionLessonId: 1, status: 1 },
+    { id: 2, userId: 1, questionLessonId: 2, status: 0 },
+    { id: 3, userId: 1, questionLessonId: 3, status: 0 },
+];
+
 
 
