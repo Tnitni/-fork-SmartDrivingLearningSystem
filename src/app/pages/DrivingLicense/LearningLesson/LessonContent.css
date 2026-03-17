@@ -116,16 +116,15 @@
         border-top: 1px solid #334155;
         display: flex;
         justify-content: flex-end;
-    }
 
-    .complete-button {
-        width: auto;
-
-        &.compact {
+        .complete-button {
+            width: auto;
+            color: var(--text-primary);
+            background: linear-gradient(to right, #3b82f6, #06b6d4);
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 14px;
+            padding: 12px 14px;
             border-radius: 999px;
             font-size: 14px;
             font-weight: 600;

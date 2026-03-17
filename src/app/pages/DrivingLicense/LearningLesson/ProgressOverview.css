@@ -44,6 +44,8 @@
                 align-items: center;
                 justify-content: center;
                 background: #1e293b;
+                border: 1px solid #33415580;
+                box-sizing: border-box;
                 color: #64748b;
                 flex-shrink: 0;
             }

@@ -48,84 +48,28 @@ export default function LearningLesson() {
                 console.log('QuestionResponse', QuestionResponse);
                 const QuestionLessonResponse = questionLessons.find(ql => ql.id == lessonId);
                 console.log('QuestionLessonResponse', QuestionLessonResponse);
+                const LessonProgressResponse = [...lessonProgresses];
+                console.log('LessonProgressResponse', LessonProgressResponse);
 
                 const QuestionLesson = {
                     ...QuestionLessonResponse,
                     questions: QuestionResponse.filter(q => q.questionLessonId == QuestionLessonResponse.id),
                 };
                 console.log('QuestionLesson', QuestionLesson);
-
                 setThisQuestionLesson(QuestionLesson);
 
                 // ==FIX==
                 const userId = 1;
-                const LessonProgressResponse = [...lessonProgresses];
                 const LessonProgress = LessonProgressResponse.filter(lp => lp.questionLessonId == lessonId && lp.userId == userId)?.sort((a, b) => (b?.score) - (a?.score));
                 console.log('LessonProgress', LessonProgress);
                 setLESSONPROGRESSes(LessonProgress);
-
-                // ==FIX==
-                const currentUserId = Number(user?.id || 1);
-                const currentLessonId = Number(QuestionLessonResponse?.id || lessonId);
-                const currentProgress = lessonProgressList.find(
-                    lp => Number(lp.userId) === currentUserId && Number(lp.questionLessonId) === currentLessonId,
-                );
-                console.log('setProgress', {
-                    lesson_progress_id: currentProgress?.id || null,
-                    status: currentProgress?.status || 0,
-                    theory_completed: Number(currentProgress?.status || 0) === 1,
-                });
-
-                setProgress({
-                    lesson_progress_id: currentProgress?.id || null,
-                    status: currentProgress?.status || 0,
-                    theory_completed: Number(currentProgress?.status || 0) === 1,
-                });
             } catch (error) {
                 setError('Error');
             } finally {
                 setLoading(false);
             };
         })();
-    }, [refresh, lessonId, questionChapterId, user?.id, lessonProgressList]);
-
-    const markLessonContentComplete = async () => {
-        const currentUserId = Number(user?.id || 1);
-        const currentLessonId = Number(ThisQuestionLesson?.id || lessonId);
-
-        // API-ready (enable when backend is available):
-        // await putData(`lesson-progress/${currentLessonId}`, { status: 1 }, user?.token || '');
-
-        setLessonProgressList(prev => {
-            const existing = prev.find(
-                lp => Number(lp.userId) === currentUserId && Number(lp.questionLessonId) === currentLessonId,
-            );
-
-            if (existing) {
-                return prev.map(lp => (
-                    Number(lp.userId) === currentUserId && Number(lp.questionLessonId) === currentLessonId
-                        ? { ...lp, status: 1 }
-                        : lp
-                ));
-            }
-
-            return [
-                ...prev,
-                {
-                    id: Date.now(),
-                    userId: currentUserId,
-                    questionLessonId: currentLessonId,
-                    status: 1,
-                },
-            ];
-        });
-
-        setProgress(prev => ({
-            ...(prev || {}),
-            status: 1,
-            theory_completed: true,
-        }));
-    };
+    }, [refresh, lessonId, questionChapterId, user?.id]);
 
     if (loading) return <div><StarsBackground /><TrafficLight text={'loading'} setRefresh={() => { }} /></div>
     if (error) return <div><StarsBackground /><TrafficLight text={'error'} setRefresh={setRefresh} /></div>
@@ -150,10 +94,8 @@ export default function LearningLesson() {
                 <div className='content-grid'>
                     <div className='main-content'>
                         <LessonContent
-                            lessonName={ThisQuestionLesson?.name || ''}
-                            lessonContentHtml={ThisQuestionLesson?.content || ''}
-                            progress={progress}
-                            onMarkLessonContentComplete={markLessonContentComplete}
+                            lesson={ThisQuestionLesson}
+                            progress={LESSONPROGRESSes}
                         />
 
                         <PracticeExams

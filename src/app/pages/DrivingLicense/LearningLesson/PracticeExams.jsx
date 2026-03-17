@@ -45,7 +45,7 @@ export default function PracticeExams({
                                 <p className='value'>~{(lesson?.questions?.length * 10 / 60 || 0)?.toFixed(0)} mins</p>
                             </div>
                         </div>
-                        {/* ==FIX== */}
+                        {/* ==FIX== 50% */}
                         <div className='stat'>
                             <i className='fa-solid fa-bullseye green' />
                             <div>
