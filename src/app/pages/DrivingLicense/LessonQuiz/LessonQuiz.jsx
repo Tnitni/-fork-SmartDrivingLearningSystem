@@ -3,13 +3,14 @@ import { answers, questions } from '../../../../mocks/DataSample';
 import StarsBackground from '../../../components/StarsBackground/StarsBackground';
 import { useAuth } from '../../../hooks/AuthContext/AuthContext';
 import ListGridButton from '../../FlashCard/ListGridButton';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import ProgressBar from '../../../components/ProgressBar';
 
 import './LessonQuiz.css';
-import ProgressBar from '../../../components/ProgressBar';
 
 export default function LessonQuiz() {
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const Params = useParams();
     const questionLessonId = Params?.lessonId;
@@ -64,6 +65,10 @@ export default function LessonQuiz() {
 
     const handleMoveCard = (direction) => {
         setSelectedQuestionId(direction == 'left' ? firstThreeWithIndexMiddle?.[0]?.id : firstThreeWithIndexMiddle?.[firstThreeWithIndexMiddle.length - 1]?.id);
+    };
+
+    const handleEndQuiz = () => {
+        navigate('/');
     };
 
     const toggleAnswerInMyAnswers = (questionId, answerId) => {
@@ -186,7 +191,11 @@ export default function LessonQuiz() {
                         </div>
                         <div className='btns'>
                             <button className='btn-left' onClick={() => handleMoveCard('left')}>Câu trước</button>
-                            <button className='btn-right' onClick={() => handleMoveCard('right')}>Câu sau</button>
+                            {index < QUESTIONs.length - 1 ?
+                                <button className='btn-right' onClick={() => handleMoveCard('right')}>Câu sau</button>
+                                :
+                                <button className='btn-end' onClick={() => handleEndQuiz()}>Kết thúc</button>
+                            }
                         </div>
                     </div>
                 )}
