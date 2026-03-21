@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './PracticeExams.css';
 
 export default function PracticeExams({
@@ -60,9 +61,11 @@ export default function PracticeExams({
                             <span>Complete theory sections to unlock</span>
                         </div>
                     ) : (
-                        <button className='start-button'>
-                            Start Exam
-                        </button>
+                        <Link to={`./quiz`}>
+                            <button className='start-button'>
+                                Start Exam
+                            </button>
+                        </Link>
                     )}
                 </div>
             </div>

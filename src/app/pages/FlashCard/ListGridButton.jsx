@@ -8,21 +8,21 @@ export default function ListGridButton({
     column = 1,
 }) {
     const getQuestionStatus = (question, myAnswers) => {
-        if (myAnswers.length === 0) return '';
+        if (myAnswers.length == 0) return 'btn-not-answer';
 
         const userAnswer = myAnswers.find(
-            item => item.questionId === question.id
+            item => item.questionId == question.id
         );
 
         // Chưa chọn gì
-        if (!userAnswer || userAnswer.answers.length === 0) {
-            return '';
+        if (!userAnswer || userAnswer.answers?.length == 0) {
+            return 'btn-not-answer';
         }
 
         const selectedAnswerIds = userAnswer.answers.map(a => a.answerId);
         const correctAnswerIds = question.answers.filter(a => a.isCorrect).map(a => a.id);
 
-        const isFull = selectedAnswerIds.length === question.correctAnswer;
+        const isFull = selectedAnswerIds.length == question.correctAnswer;
         const hasIncorrect = selectedAnswerIds.some(
             id => !correctAnswerIds.includes(id)
         );
@@ -32,15 +32,15 @@ export default function ListGridButton({
         if (!hasIncorrect && !isFull) return 'btn-correct-missing';
         if (hasIncorrect && !isFull) return 'btn-incorrect-missing';
 
-        return '';
+        return 'btn-not-answer';
     };
 
     return (
         <div className='list-grid-button-container' style={{ '--column': column }}>
             {list.map((question, bIndex) => (
                 <button
-                    key={question.id}
-                    className={`btn ${selectedQuestionId === question.id ? 'btn-selected' : ''} ${getQuestionStatus(question, myAnswers)}`}
+                    key={bIndex}
+                    className={`grid-btn ${selectedQuestionId == question.id ? 'btn-selected' : ''} ${getQuestionStatus(question, myAnswers)}`}
                     onClick={() => setSelectedQuestionId(question.id)}
                 >
                     {bIndex + 1}

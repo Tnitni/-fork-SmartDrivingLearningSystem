@@ -1,9 +1,12 @@
 import { useMemo } from 'react';
+
 import './ProgressBar.css';
 
 export default function ProgressBar({
     current,
     total,
+    showValue = false,
+    height = '20px',
 }) {
     const percent = useMemo(() => {
         if (total === 0) return 0;
@@ -12,7 +15,10 @@ export default function ProgressBar({
 
     return (
         <div className='progress-bar-container'>
-            <div className='bar'>
+            <div
+                className='bar'
+                style={{ height: height }}
+            >
                 <div
                     className='fill'
                     style={{
@@ -32,7 +38,7 @@ export default function ProgressBar({
                     className='light'
                     style={{ left: `${percent}%` }}
                 />
-                <div className='label'>{percent}%</div>
+                {showValue && <div className='label'>{percent}%</div>}
             </div>
         </div>
     )

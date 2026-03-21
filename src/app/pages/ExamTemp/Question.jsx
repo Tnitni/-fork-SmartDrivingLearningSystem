@@ -22,7 +22,7 @@ export default function Question({
                     </div>
                 </div>
             </div>
-            <ProgressBar current={myAnswers?.filter(q => q.answers)?.length || 0} total={QuestionsAnswers?.length || 1} />
+            <ProgressBar current={myAnswers?.filter(q => q.answers)?.length || 0} total={QuestionsAnswers?.length || 1} showValue={true} height={'20px'} />
             <div className='my-answers'>
                 {myAnswers.map((question, qIndex) => (
                     <div key={question.id} className='question-item'>

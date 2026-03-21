@@ -1,32 +1,88 @@
 .list-grid-button-container {
+    padding: 12px;
     width: fit-content;
     height: fit-content;
     display: grid;
     grid-template-columns: repeat(var(--column), minmax(0, 1fr));
     gap: 4px;
+    max-height: 80vh;
+    overflow-y: scroll;
 
-    .btn {
-        &.btn-selected {
-            background-color: var(--yellow-light);
-            box-shadow: 0 0 0 2px var(--yellow);
-        }
+    .grid-btn {
+        color: #80FCFF;
+        background-color: transparent;
+        border: 2px solid #68FCFF;
+        box-shadow: 0 0 6px #38BDF899;
+        transition: all 0.1s ease;
 
         &.btn-correct {
-            background: var(--green);
             color: #fff;
+            background-color: #10b98180;
+            border: 2px solid #10b981;
+
+            &:hover {
+                background-color: #10b981bf;
+                box-shadow: 0 0 12px #0EA5E9;
+                border: 2px solid #68FCFF;
+            }
         }
 
         &.btn-incorrect {
-            background: var(--red);
             color: #fff;
+            background-color: #b9371080;
+            border: 2px solid #b93710;
+
+            &:hover {
+                background-color: #b93710bf;
+                box-shadow: 0 0 12px #0EA5E9;
+                border: 2px solid #68FCFF;
+            }
         }
 
         &.btn-correct-missing {
-            background: var(--green-light);
+            color: #fff;
+            background-color: #10b98133;
+            border: 2px solid #10b981;
+
+            &:hover {
+                background-color: #10b98180;
+                box-shadow: 0 0 12px #0EA5E9;
+                border: 2px solid #68FCFF;
+            }
         }
 
         &.btn-incorrect-missing {
-            background: var(--red-light);
+            color: #fff;
+            background-color: #b9371033;
+            border: 2px solid #b93710;
+
+            &:hover {
+                background-color: #b9371080;
+                box-shadow: 0 0 12px #0EA5E9;
+                border: 2px solid #68FCFF;
+            }
+        }
+
+        &.btn-not-answer {
+            &:hover {
+                background-color: #38BDF8;
+                box-shadow: 0 0 12px #0EA5E9;
+                border: 2px solid #68FCFF;
+            }
+        }
+
+        &.btn-selected {
+            background-color: #38BDF899;
+            box-shadow: 0 0 12px #0EA5E9;
+
+            &:hover {
+                background-color: #38BDF8;
+                border: 2px solid #68FCFF;
+            }
+        }
+
+        &.off {
+            opacity: 0.4;
         }
     }
 }

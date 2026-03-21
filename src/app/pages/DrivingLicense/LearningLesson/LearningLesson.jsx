@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 // import { fetchData } from '../../../mocks/CallingAPI';
 // import { putData } from '../../../mocks/CallingAPI';
 import { lessonProgresses, questionLessons, questions } from '../../../../mocks/DataSample';
@@ -20,10 +20,8 @@ export default function LearningLesson() {
     console.log('questionChapterId', questionChapterId);
     const drivingLicenseId = Params?.licenseId;
     console.log('drivingLicenseId', drivingLicenseId);
-
-    const { licenseId, lessonId } = useParams();
-    const [progress, setProgress] = useState(null);
-    const [lessonProgressList, setLessonProgressList] = useState(lessonProgresses);
+    const questionLessonId = Params?.lessonId;
+    console.log('questionLessonId', questionLessonId);
 
     const [ThisQuestionLesson, setThisQuestionLesson] = useState(null);
     const [LESSONPROGRESSes, setLESSONPROGRESSes] = useState([]);
@@ -43,10 +41,10 @@ export default function LearningLesson() {
                 // setDRIVINGLICENSEs(LicenseResponse);
                 // const LicenseResponse = await fetchData('licenses', token);
                 // console.log('LicenseResponse', LicenseResponse);
-                // const QuestionLessonResponse = await fetchData(`lessons/${lessonId}`, token);
+                // const QuestionLessonResponse = await fetchData(`lessons/${questionLessonId}`, token);
                 const QuestionResponse = [...questions];
                 console.log('QuestionResponse', QuestionResponse);
-                const QuestionLessonResponse = questionLessons.find(ql => ql.id == lessonId);
+                const QuestionLessonResponse = questionLessons.find(ql => ql.id == questionLessonId);
                 console.log('QuestionLessonResponse', QuestionLessonResponse);
                 const LessonProgressResponse = [...lessonProgresses];
                 console.log('LessonProgressResponse', LessonProgressResponse);
@@ -60,7 +58,7 @@ export default function LearningLesson() {
 
                 // ==FIX==
                 const userId = 1;
-                const LessonProgress = LessonProgressResponse.filter(lp => lp.questionLessonId == lessonId && lp.userId == userId)?.sort((a, b) => (b?.score) - (a?.score));
+                const LessonProgress = LessonProgressResponse.filter(lp => lp.questionLessonId == questionLessonId && lp.userId == userId)?.sort((a, b) => (b?.score) - (a?.score));
                 console.log('LessonProgress', LessonProgress);
                 setLESSONPROGRESSes(LessonProgress);
             } catch (error) {
@@ -69,7 +67,7 @@ export default function LearningLesson() {
                 setLoading(false);
             };
         })();
-    }, [refresh, lessonId, questionChapterId, user?.id]);
+    }, [refresh, questionLessonId, questionChapterId, drivingLicenseId, user?.id]);
 
     if (loading) return <div><StarsBackground /><TrafficLight text={'loading'} setRefresh={() => { }} /></div>
     if (error) return <div><StarsBackground /><TrafficLight text={'error'} setRefresh={setRefresh} /></div>
