@@ -62,11 +62,16 @@ export default function SimulationScenario() {
         <div className='simulation-scenario-container'>
             <CloudsBackground />
             <div className='container'>
-                <ControlledVideo selectedScenario={selectedScenario} />
+                <ControlledVideo
+                    selectedScenario={selectedScenario}
+                    allowRestart={true}
+                    allowContinue={true}
+                />
                 <ListScenario
                     list={SIMULATIONSCENARIOs}
                     groupBy={'simulationChapterId'}
                     onClickButton={setSelectedScenarioId}
+                    selected={selectedScenarioId}
                 />
             </div>
         </div>

@@ -13,22 +13,50 @@
 
     .content {
         width: 100%;
-        margin: 8px 0 0;
+        margin: 12px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
 
-        .bar {
-            width: 100%;
-            height: 6px;
-            background-color: #e5e7eb;
+        .bars {
+            .bar {
+                width: 100%;
+                height: 8px;
+                background-color: #e5e7eb40;
 
-            &.point-bar {
-                display: flex;
+                &.point-bar {
+                    display: flex;
+                }
+
+                .fill {
+                    height: 100%;
+
+                    &.white-point {
+                        background-color: #2259c7;
+
+                        &.last {
+                            flex: 1;
+                        }
+                    }
+                }
             }
+        }
 
-            .fill {
-                height: 100%;
+        .detail {
+            display: flex;
+            align-items: center;
+            gap: 20px;
 
-                &.white-point {
-                    background-color: #2259c7;
+            button {
+                color: #fff;
+                background: linear-gradient(90deg, #2563eb, #0891b2);
+
+                &:hover {
+                    box-shadow: 0 0 20px #2563eb80;
+                }
+
+                &:disabled {
+                    cursor: not-allowed;
                 }
             }
         }

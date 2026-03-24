@@ -1,20 +1,40 @@
 .list-scenario-container {
     .group-list {
-
-        h3 {
-            margin: 0 0 8px;
-        }
-
-        .list {
-            display: grid;
-            grid-template-columns: repeat(8, minmax(0, 1fr));
-            gap: 8px;
+        .group-item {
             margin: 0 0 20px;
 
-            .item {
-                background-color: #ff80ff;
-                padding: 8px 12px;
-                font-size: .75rem;
+            h3 {
+                margin: 0 0 8px;
+            }
+
+            .list {
+                display: grid;
+                grid-template-columns: repeat(8, minmax(0, 1fr));
+                gap: 8px;
+
+                .item {
+                    padding: 8px 12px;
+                    font-size: .75rem;
+                    color: #80FCFF;
+                    background-color: transparent;
+                    border: 2px solid #68FCFF;
+                    box-shadow: 0 0 6px #38BDF899;
+                    transition: all 0.1s ease;
+
+                    &:hover {
+                        background-color: #38BDF8;
+                        border: 2px solid #68FCFF;
+                    }
+
+                    &.btn-selected {
+                        background-color: #38BDF899;
+                        box-shadow: 0 0 12px #0EA5E9;
+                    }
+
+                    &.off {
+                        opacity: 0.4;
+                    }
+                }
             }
         }
     }

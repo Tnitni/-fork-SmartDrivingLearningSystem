@@ -5,6 +5,7 @@ export default function ListScenario({
     list = [],
     groupBy = '',
     onClickButton = () => { },
+    selected = '',
 }) {
     const groupedList = Object.values(
         list.reduce((acc, item) => {
@@ -33,15 +34,15 @@ export default function ListScenario({
 
             <div className='group-list'>
                 {groupedList.map((group, gIndex) => (
-                    <div key={gIndex}>
-                        <h3 className='chapter-name'>
-                            {gIndex + 1}: {group?.[groupBy]?.name}
+                    <div key={gIndex} className='group-item'>
+                        <h3>
+                            Chương {gIndex + 1}: {group?.[groupBy]?.name}
                             {/* {JSON.stringify(group)} */}
                         </h3>
 
                         <div className='list'>
                             {group.items?.map((item, index) => (
-                                <button key={index} className='item' onClick={() => onClickButton(item.id)}>
+                                <button key={index} className={`item ${item.id == selected ? 'btn-selected' : ''}`} onClick={() => onClickButton(item.id)}>
                                     <div>
                                         {index + 1}
                                     </div>
