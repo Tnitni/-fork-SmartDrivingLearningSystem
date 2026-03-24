@@ -1,0 +1,8 @@
+.simulation-scenario-container {
+    /* background: #020617; */
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+}
