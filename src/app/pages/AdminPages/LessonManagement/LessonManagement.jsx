@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchData, putData } from "../../../../mocks/CallingAPI";
+import { deleteData, fetchData, putData } from "../../../../mocks/CallingAPI";
 import {
   questionChapters,
   questionLessons,
@@ -21,6 +21,7 @@ export default function LessonManagement() {
   const [error, setError] = useState(null);
   const [errorFunction, setErrorFunction] = useState(null);
   const [popupProps, setPopupProps] = useState(null);
+  const [deletePopupProps, setDeletePopupProps] = useState(null);
   const [editing, setEditing] = useState(null);
   const [creating, setCreating] = useState(false);
 
@@ -38,11 +39,30 @@ export default function LessonManagement() {
       setError(null);
       setLoading(true);
       try {
-        const enableApiLoad = false;
         const token = user?.token || "";
-        const chapterResponse = questionChapters;
-        const lessonResponse = enableApiLoad
-          ? await fetchData("lessons", token)
+        const chapterQuery = new URLSearchParams({
+          page: "1",
+          pageSize: "500",
+        });
+        const lessonQuery = new URLSearchParams({
+          page: "1",
+          pageSize: "500",
+        });
+
+        const chapterResponseRaw = await fetchData(
+          `/questionchapters?${chapterQuery.toString()}`,
+          token,
+        );
+        const lessonResponseRaw = await fetchData(
+          `/questionlessons?${lessonQuery.toString()}`,
+          token,
+        );
+
+        const chapterResponse = Array.isArray(chapterResponseRaw)
+          ? chapterResponseRaw
+          : questionChapters;
+        const lessonResponse = Array.isArray(lessonResponseRaw)
+          ? lessonResponseRaw
           : questionLessons;
 
         const lessonsWithChapter = lessonResponse.map((lesson) => ({
@@ -55,8 +75,8 @@ export default function LessonManagement() {
 
         setQUESTIONCHAPTERs(chapterResponse);
         setLESSONs(lessonsWithChapter);
-      } catch {
-        setError("Error");
+      } catch (error) {
+        setError(error?.message || "Error");
       } finally {
         setLoading(false);
       }
@@ -133,11 +153,7 @@ export default function LessonManagement() {
     };
 
     try {
-      const enableApiPersistence = false;
-
-      if (enableApiPersistence) {
-        await putData(`lessons/${nextLesson.id}`, nextLesson, token);
-      }
+      await putData(`/questionlessons/${nextLesson.id}`, nextLesson, token);
 
       setLESSONs((prev) =>
         prev.map((item) =>
@@ -146,8 +162,21 @@ export default function LessonManagement() {
             : item,
         ),
       );
-    } catch {
-      setErrorFunction("Error");
+    } catch (error) {
+      setErrorFunction(error?.message || "Error");
+    }
+  };
+
+  const handleDeleteLesson = async (lesson) => {
+    const token = user?.token || "";
+
+    try {
+      await deleteData(`/questionlessons/${lesson.id}`, token);
+      setLESSONs((prev) =>
+        prev.filter((item) => String(item.id) !== String(lesson.id)),
+      );
+    } catch (error) {
+      setErrorFunction(error?.message || "Error");
     }
   };
 
@@ -287,6 +316,14 @@ export default function LessonManagement() {
                         <span>Inactive</span>
                         <i className="fa-solid fa-lock" />
                       </button>
+                      <button
+                        type="button"
+                        className="btn-delete"
+                        onClick={() => setDeletePopupProps(lesson)}
+                      >
+                        <span>Delete</span>
+                        <i className="fa-solid fa-trash" />
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -340,6 +377,21 @@ export default function LessonManagement() {
               setPopupProps(null);
             }}
             onCancel={() => setPopupProps(null)}
+          />
+        )}
+
+        {deletePopupProps && (
+          <ConfirmDialog
+            title={"CONFIRMATION"}
+            message={`Are you sure you want to delete lesson \"${deletePopupProps.name || ""}\"?`}
+            confirm={"DELETE"}
+            cancel={"CANCEL"}
+            color={"#ff4d4f80"}
+            onConfirm={() => {
+              handleDeleteLesson(deletePopupProps);
+              setDeletePopupProps(null);
+            }}
+            onCancel={() => setDeletePopupProps(null)}
           />
         )}
 

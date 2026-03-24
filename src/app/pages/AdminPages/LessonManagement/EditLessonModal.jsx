@@ -25,22 +25,16 @@ export default function EditLessonModal({
 	useEffect(() => {
 		setLesson(lessonProp);
 		setEditorInitialHtml(lessonProp?.content || "");
-		console.log("[EditLessonModal] Prefill content:", lessonProp?.content || "");
 	}, [lessonProp]);
 
 	const persistLesson = async (payload) => {
-		const enableApiPersistence = false;
 		const token = user?.token || "";
 
-		if (!enableApiPersistence) {
-			return payload;
-		}
-
 		if (action === "edit") {
-			return putData(`lessons/${payload.id}`, payload, token);
+			return putData(`/questionlessons/${payload.id}`, payload, token);
 		}
 
-		return postData("lessons", payload, token);
+		return postData("/questionlessons", payload, token);
 	};
 
 	const buildLessonPayload = () => {
@@ -48,10 +42,7 @@ export default function EditLessonModal({
 
 		return {
 			...lesson,
-			id:
-				action === "create"
-					? lesson.id || `lesson-${Date.now()}`
-					: lesson.id,
+			id: action === "create" ? lesson.id || undefined : lesson.id,
 			questionChapterId: Number(lesson.questionChapterId) || "",
 			name: lesson.name?.trim() || "",
 			description: lesson.description?.trim() || "",
@@ -78,20 +69,19 @@ export default function EditLessonModal({
 
 		try {
 			const nextLesson = buildLessonPayload();
-			console.log("[EditLessonModal] RichText input -> output:", {
-				prefill: editorInitialHtml,
-				output: nextLesson.content,
-			});
-			await persistLesson(nextLesson);
+			const savedLesson = await persistLesson(nextLesson);
+			const finalLesson = savedLesson && typeof savedLesson === "object"
+				? { ...nextLesson, ...savedLesson }
+				: nextLesson;
 
 			if (onSave) {
-				onSave(nextLesson, action);
+				onSave(finalLesson, action);
 			}
 
-			setRefresh((prev) => prev);
+			setRefresh((prev) => prev + 1);
 			onClose();
-		} catch {
-			onError?.("Error");
+		} catch (error) {
+			onError?.(error?.message || "Error");
 		} finally {
 			setLoading(false);
 		}
