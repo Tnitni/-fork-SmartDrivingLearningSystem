@@ -32,8 +32,8 @@ export default function DrivingLicense() {
                     pageSize: '500',
                 });
 
-                const DrivingLicenseResponse = await fetchData(`/drivinglicenses?${drivingLicenseQuery.toString()}`, token);
-                const QuestionChapterResponse = await fetchData(`/questionchapters?${chapterQuery.toString()}`, token);
+                const DrivingLicenseResponse = await fetchData(`api/drivinglicenses?${drivingLicenseQuery.toString()}`, token);
+                const QuestionChapterResponse = await fetchData(`api/questionchapters?${chapterQuery.toString()}`, token);
 
                 const drivingLicenses = Array.isArray(DrivingLicenseResponse) ? DrivingLicenseResponse : [];
                 const questionChapters = Array.isArray(QuestionChapterResponse) ? QuestionChapterResponse : [];

@@ -44,15 +44,29 @@ export default function LessonManagement() {
           page: "1",
           pageSize: "500",
         });
+        const activeLessonQuery = new URLSearchParams({
+          page: "1",
+          pageSize: "500",
+          status: "1",
+        });
+        const inactiveLessonQuery = new URLSearchParams({
+          page: "1",
+          pageSize: "500",
+          status: "0",
+        });
 
         const chapterResponseRaw = await fetchData(
-          `/questionchapters?${chapterQuery.toString()}`,
+          `api/questionchapters?${chapterQuery.toString()}`,
           token,
         );
         const lessonResponseRaw = await fetchData(
-          `/questionlessons?${lessonQuery.toString()}`,
+          `api/questionlessons?${lessonQuery.toString()}`,
           token,
         );
+        const [activeLessonResponseRaw, inactiveLessonResponseRaw] = await Promise.all([
+          fetchData(`api/questionlessons?${activeLessonQuery.toString()}`, token),
+          fetchData(`api/questionlessons?${inactiveLessonQuery.toString()}`, token),
+        ]);
 
         const chapterResponse = Array.isArray(chapterResponseRaw?.items)
           ? chapterResponseRaw.items
@@ -60,8 +74,24 @@ export default function LessonManagement() {
         const lessonResponse = Array.isArray(lessonResponseRaw?.items)
           ? lessonResponseRaw.items
           : [];
+        const activeLessonResponse = Array.isArray(activeLessonResponseRaw?.items)
+          ? activeLessonResponseRaw.items
+          : [];
+        const inactiveLessonResponse = Array.isArray(inactiveLessonResponseRaw?.items)
+          ? inactiveLessonResponseRaw.items
+          : [];
 
-        const lessonsWithChapter = lessonResponse.map((lesson) => ({
+        const lessonById = new Map();
+        [...lessonResponse, ...activeLessonResponse, ...inactiveLessonResponse].forEach(
+          (item) => {
+            if (item?.id !== undefined && item?.id !== null) {
+              lessonById.set(String(item.id), item);
+            }
+          },
+        );
+        const mergedLessons = Array.from(lessonById.values());
+
+        const lessonsWithChapter = mergedLessons.map((lesson) => ({
           ...lesson,
           chapter:
             chapterResponse.find(
@@ -143,13 +173,12 @@ export default function LessonManagement() {
   const toggleLessonStatus = async (lesson) => {
     const token = user?.token || "";
     const nextLesson = {
-      ...lesson,
+      id: lesson.id,
       status: Number(lesson.status) === 1 ? 0 : 1,
-      updateAt: new Date().toISOString(),
     };
 
     try {
-      await putData(`/questionlessons/${nextLesson.id}`, nextLesson, token);
+      await putData(`api/questionlessons/${nextLesson.id}`, nextLesson, token);
 
       setLESSONs((prev) =>
         prev.map((item) =>
@@ -167,7 +196,7 @@ export default function LessonManagement() {
     const token = user?.token || "";
 
     try {
-      await deleteData(`/questionlessons/${lesson.id}`, token);
+      await deleteData(`api/questionlessons/${lesson.id}`, token);
       setLESSONs((prev) =>
         prev.filter((item) => String(item.id) !== String(lesson.id)),
       );
@@ -348,8 +377,6 @@ export default function LessonManagement() {
               name: "",
               description: "",
               content: "",
-              createAt: "",
-              updateAt: "",
               status: 1,
             }}
             onClose={closeCreateModal}

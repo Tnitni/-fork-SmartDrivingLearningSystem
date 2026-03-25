@@ -146,7 +146,7 @@ export const uploadMedia = async ({ files = [], entityId = '', imageTarget = '',
         formData.append('EntityId', entityId);
         formData.append('ImageTarget', imageTarget);
 
-        const response = await fetch(`${apiUrl}/api/media/upload`, {
+        const response = await fetch(`${apiUrl}api/media/upload`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -181,7 +181,7 @@ export const deleteMedia = async ({ fileUrl = '', imageTarget = '', token = '' }
             imageTarget,
         });
 
-        const response = await fetch(`${apiUrl}/api/media?${query.toString()}`, {
+        const response = await fetch(`${apiUrl}api/media?${query.toString()}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`,

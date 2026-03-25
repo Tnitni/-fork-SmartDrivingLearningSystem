@@ -51,26 +51,51 @@ export default function EditLessonModal({
 
 	const persistLesson = async (payload) => {
 		if (action === "edit") {
-			return putData(`/questionlessons/${payload.id}`, payload, token);
+			return putData(`api/questionlessons/${payload.id}`, payload, token);
 		}
+		console.log("Creating lesson with payload:", payload);
+		return postData("api/questionlessons", payload, token);
+	};
 
-		return postData("/questionlessons", payload, token);
+	const normalizeStatus = (value) => {
+		const parsed = Number(value);
+		return parsed === 0 ? 0 : 1;
 	};
 
 	const buildLessonPayload = () => {
-		const now = new Date().toISOString();
-
+		console.log("Building lesson payload with current state:", lesson.content?.trim());
 		return {
-			...lesson,
-			id: action === "create" ? lesson.id || undefined : lesson.id,
-			questionChapterId: Number(lesson.questionChapterId) || "",
+			...(action === "edit" ? { id: lesson.id } : {}),
+			questionChapterId: String(lesson.questionChapterId || "").trim(),
 			name: lesson.name?.trim() || "",
 			description: lesson.description?.trim() || "",
 			content: lesson.content?.trim() || "",
-			status: Number(lesson.status ?? 1),
-			createAt: lesson.createAt || now,
-			updateAt: now,
+			status: normalizeStatus(lesson.status),
 		};
+	};
+
+	const validateLessonPayload = (payload) => {
+		if (!payload.questionChapterId) {
+			return "Chapter is required";
+		}
+
+		if (!payload.name) {
+			return "Lesson Name is required";
+		}
+
+		if (payload.name.length > 255) {
+			return "Lesson Name must be at most 255 characters";
+		}
+
+		if (!payload.description) {
+			return "Description is required";
+		}
+
+		if (payload.description.length > 255) {
+			return "Description must be at most 255 characters";
+		}
+
+		return "";
 	};
 
 	const handleChange = (e) => {
@@ -86,9 +111,16 @@ export default function EditLessonModal({
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
+		let nextLesson;
 
 		try {
-			const nextLesson = buildLessonPayload();
+			nextLesson = buildLessonPayload();
+			const validationError = validateLessonPayload(nextLesson);
+			if (validationError) {
+				onError?.(validationError);
+				return;
+			}
+
 			const savedLesson = await persistLesson(nextLesson);
 			const finalLesson = savedLesson && typeof savedLesson === "object"
 				? { ...nextLesson, ...savedLesson }
@@ -102,6 +134,7 @@ export default function EditLessonModal({
 			onClose();
 		} catch (error) {
 			onError?.(error?.message || "Error");
+			console.error("Error saving lesson:", nextLesson);
 		} finally {
 			setLoading(false);
 		}
@@ -133,6 +166,7 @@ export default function EditLessonModal({
 							placeholder=" "
 							value={lesson.name || ""}
 							onChange={handleChange}
+							maxLength={255}
 							required
 						/>
 						<label htmlFor="name">Lesson Name</label>
@@ -164,6 +198,7 @@ export default function EditLessonModal({
 							placeholder=" "
 							value={lesson.description || ""}
 							onChange={handleChange}
+							maxLength={255}
 							required
 						/>
 						<label htmlFor="description">Description</label>

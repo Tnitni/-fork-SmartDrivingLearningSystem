@@ -42,7 +42,7 @@ export default function ChapterLesson() {
                     pageSize: '500',
                 });
 
-                const chapterResponse = await fetchData(`/questionchapters?${chapterQuery.toString()}`, token);
+                const chapterResponse = await fetchData(`api/questionchapters?${chapterQuery.toString()}`, token);
                 const chapterList = Array.isArray(chapterResponse) ? chapterResponse : [];
 
                 const QuestionChapters = await Promise.all(chapterList.map(async (chapter) => {
@@ -52,7 +52,7 @@ export default function ChapterLesson() {
                         pageSize: '500',
                     });
 
-                    const lessonResponse = await fetchData(`/questionlessons?${lessonQuery.toString()}`, token);
+                    const lessonResponse = await fetchData(`api/questionlessons?${lessonQuery.toString()}`, token);
                     const questionLessons = Array.isArray(lessonResponse) ? lessonResponse : [];
 
                     return {
@@ -62,7 +62,7 @@ export default function ChapterLesson() {
                 }));
                 console.log('QuestionChapters', QuestionChapters);
 
-                const DrivingLicenseRawResponse = await fetchData(`/drivinglicenses/${drivingLicenseId}`, token);
+                const DrivingLicenseRawResponse = await fetchData(`api/drivinglicenses/${drivingLicenseId}`, token);
                 const DrivingLicenseResponse = normalizeDetailResponse(DrivingLicenseRawResponse);
                 console.log('ThisDrivingLicense', ThisDrivingLicense);
 

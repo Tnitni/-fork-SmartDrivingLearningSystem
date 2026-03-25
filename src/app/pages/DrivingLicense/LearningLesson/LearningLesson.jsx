@@ -36,7 +36,7 @@ export default function LearningLesson() {
             setLoading(true);
             const token = user?.token || '';
             try {
-                const QuestionLessonRawResponse = await fetchData(`/questionlessons/${questionLessonId}`, token);
+                const QuestionLessonRawResponse = await fetchData(`api/questionlessons/${questionLessonId}`, token);
                 const QuestionLessonResponse = normalizeDetailResponse(QuestionLessonRawResponse);
 
                 const questionQuery = new URLSearchParams({
@@ -44,7 +44,7 @@ export default function LearningLesson() {
                     page: '1',
                     pageSize: '500',
                 });
-                const QuestionResponseRaw = await fetchData(`/questions?${questionQuery.toString()}`, token);
+                const QuestionResponseRaw = await fetchData(`api/questions?${questionQuery.toString()}`, token);
                 const QuestionResponse = Array.isArray(QuestionResponseRaw) ? QuestionResponseRaw : [];
                 console.log('QuestionResponse', QuestionResponse);
                 console.log('QuestionLessonResponse', QuestionLessonResponse);
