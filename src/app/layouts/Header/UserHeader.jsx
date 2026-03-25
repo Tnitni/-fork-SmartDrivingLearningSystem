@@ -13,15 +13,16 @@ export default function UserHeader() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const menuItems = [
-        { name: 'HOME', icon: 'house', path: '/' },
-        { name: 'LICENSE', icon: 'book', path: '/driving-license' },
-        { name: 'FORUM', icon: 'message', path: '/forum' },
-        { name: 'LEARNING', icon: 'book-open', path: '/learning' },
+        { name: 'HOME', icon: 'house', iconType: 'solid', path: '/' },
+        { name: 'LICENSE', icon: 'book', iconType: 'solid', path: '/driving-license' },
+        { name: 'SIMULATION', icon: 'circle-play', iconType: 'regular', path: '/simulation' },
+        { name: 'FORUM', icon: 'message', iconType: 'solid', path: '/forum' },
+        { name: 'LEARNING', icon: 'book-open', iconType: 'solid', path: '/learning' },
 
-        { name: 'GROUND', icon: 'map', path: '/three-scene' },
-        { name: 'CAR', icon: 'car', path: '/car' },
-        { name: 'ADMIN', icon: 'user', path: '/admin' },
-        { name: 'EXCEL', icon: 'file-excel', path: '/read-excel-data' },
+        { name: 'GROUND', icon: 'map', iconType: 'solid', path: '/three-scene' },
+        { name: 'CAR', icon: 'car', iconType: 'solid', path: '/car' },
+        { name: 'ADMIN', icon: 'user', iconType: 'solid', path: '/admin' },
+        { name: 'EXCEL', icon: 'file-excel', iconType: 'solid', path: '/read-excel-data' },
     ];
 
     // useEffect(() => {
@@ -52,7 +53,7 @@ export default function UserHeader() {
                                 to={itemPath}
                                 className={`nav-item ${isActive ? 'active' : ''}`}
                             >
-                                <i className={`fa-solid fa-${item.icon}`} />
+                                <i className={`fa-${item.iconType} fa-${item.icon}`} />
                                 <span>{item.name}</span>
                             </Link>
                         );

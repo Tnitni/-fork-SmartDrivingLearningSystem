@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 
 import './ControlledVideo.css';
 
-export default function ControlledVideo() {
+export default function ControlledVideo({
+    selectedScenario = null,
+    allowRestart = false,
+    allowContinue = false,
+}) {
     const videoRef = useRef(null);
     const lastTimeRef = useRef(0);
 
@@ -36,6 +40,10 @@ export default function ControlledVideo() {
                     setVideoTimeInSeconds(exactSeconds);
 
                     console.log('⏸ Video dừng tại:', exactSeconds, 'giây');
+                } else {
+                    if (allowContinue) {
+                        video.play();
+                    }
                 }
             }
         };
@@ -46,71 +54,95 @@ export default function ControlledVideo() {
         return () => {
             video.removeEventListener('timeupdate', handleTimeUpdate);
             document.removeEventListener('keydown', handleKeyDown);
+            setVideoTimeInSeconds(null);
+            setProgressPercent(0);
         };
-    }, []);
+    }, [selectedScenario]);
 
     const handleRestart = () => {
         const video = videoRef.current;
-
         video.pause();
         video.currentTime = 0;
         video.load();
         video.play();
-
         lastTimeRef.current = 0;
         setVideoTimeInSeconds(null);
     };
 
+    const FirstWhite = 100 * selectedScenario?.startPoint / videoRef.current?.duration;
+    // const LastWhite = 100 - (100 * selectedScenario?.endPoint / videoRef.current?.duration);
+    const MiddlePoint = (20 * (selectedScenario?.endPoint - selectedScenario?.startPoint) / videoRef.current?.duration);
+    // console.log('FirstWhite', FirstWhite);
+    // console.log('LastWhite', LastWhite);
+    // console.log('MiddlePoint', MiddlePoint);
+
     return (
         <div className='controlled-video-container'>
-            <video
-                ref={videoRef}
-                src='https://www.w3schools.com/html/mov_bbb.mp4'
-                autoPlay
-                muted
-                playsInline
-                preload='auto'
-                style={{
-                    width: 640,
-                    pointerEvents: 'none',
-                }}
-            />
-
-            <div style={{ width: 640, marginTop: 8 }}>
-                <div
-                    style={{
-                        height: 6,
-                        width: '100%',
-                        backgroundColor: '#e5e7eb',
-                        borderRadius: 4,
-                        overflow: 'hidden',
-                    }}
-                >
-                    <div
-                        style={{
-                            height: '100%',
-                            width: `${progressPercent}%`,
-                            backgroundColor:
-                                progressPercent > 90 ? '#ef4444' : '#3b82f6',
-                            transition: 'width 0.15s linear',
-                        }}
+            {selectedScenario ?
+                <>
+                    <video
+                        ref={videoRef}
+                        src={selectedScenario?.video || 'https://www.w3schools.com/html/mov_bbb.mp4'}
+                        autoPlay
+                        muted
+                        playsInline
+                        preload='auto'
                     />
+                    <div className='content'>
+                        <div className='bars'>
+                            <div className='bar'>
+                                <div
+                                    className='fill'
+                                    style={{
+                                        width: `${progressPercent}%`,
+                                        backgroundColor: progressPercent > 80 ? '#ef4444' : '#3b82f6',
+                                    }}
+                                />
+                            </div>
+                            {videoTimeInSeconds &&
+                                <div className='bar point-bar'>
+                                    <div
+                                        className='fill white-point'
+                                        style={{ width: `${FirstWhite}%` }}
+                                    />
+                                    {[...Array(5)].map((_, pIndex) => (
+                                        <div
+                                            key={pIndex}
+                                            className='fill'
+                                            style={{
+                                                width: `${MiddlePoint}%`,
+                                                background: `linear-gradient(to right, hsl(${120 - pIndex * 30}, 60%, 60%), hsl(${120 - pIndex * 30}, 60%, 50%))`,
+                                            }}
+                                        />
+                                    ))}
+                                    <div className='fill white-point last' />
+                                </div>
+                            }
+                        </div>
+                        {/* <small>
+                            {progressPercent > 95
+                                ? 'Video sắp kết thúc'
+                                : 'Đang phát'}
+                        </small> */}
+
+                        <div className='detail'>
+                            {allowRestart &&
+                                <button onClick={handleRestart} disabled={!allowRestart}>Bắt đầu lại</button>
+                            }
+                            {videoTimeInSeconds !== null && (
+                                <p>Thời gian đã chạy: {videoTimeInSeconds?.toFixed(3)} giây</p>
+                            )}
+                        </div>
+                    </div>
+                </>
+                :
+                <div
+                    ref={videoRef}
+                    className='no-video'
+                >
+                    Hãy chọn một kịch bản
                 </div>
-
-                <small>
-                    {progressPercent > 95
-                        ? 'Video sắp kết thúc'
-                        : 'Đang phát'}
-                </small>
-            </div>
-
-            <div style={{ marginTop: 12 }}>
-                <button onClick={handleRestart}>Bắt đầu lại</button>
-            </div>
-
-            {videoTimeInSeconds !== null && (
-                <p>⏱ Thời gian đã chạy: {videoTimeInSeconds} giây</p>
-            )}
+            }
         </div>
     )
 }

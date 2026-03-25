@@ -19,6 +19,9 @@ import LessonQuiz from '../pages/DrivingLicense/LessonQuiz/LessonQuiz.jsx'
 import ListExam from '../pages/ExamTemp/ListExam.jsx'
 import ExamTemp from '../pages/ExamTemp/ExamTemp.jsx'
 
+import SimulationIntroduction from '../pages/SimulationScenario/SimulationIntroduction.jsx'
+import SimulationScenario from '../pages/SimulationScenario/SimulationScenario.jsx'
+
 import Forum from '../pages/Forum/Forum.jsx'
 
 import Learning from '../pages/Learning/Learning.jsx'
@@ -56,6 +59,9 @@ export default function MainRoutes() {
                     <Route path='driving-license/:licenseId' element={<ChapterLesson />} />
                     <Route path='driving-license/:licenseId/chapter/:chapterId/lesson/:lessonId' element={<LearningLesson />} />
                     <Route path='driving-license/:licenseId/chapter/:chapterId/lesson/:lessonId/quiz' element={<LessonQuiz />} />
+
+                    <Route path='simulation' element={<SimulationIntroduction />} />
+                    <Route path='simulation/scenarios' element={<SimulationScenario />} />
 
                     <Route path='driving-license/:licenseId/chapter/:chapterId/lesson/:lessonId/list-exam' element={<ListExam />} />
                     <Route path='driving-license/:licenseId/chapter/:chapterId/lesson/:lessonId/list-exam/exam/:examId' element={<ExamTemp />} />

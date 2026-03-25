@@ -1,7 +1,7 @@
 .user-layout-container {
     min-height: 100vh;
-    color: #fff;
-    overflow-x: hidden;
+    color: var(--text-primary);
+    /* overflow-x: hidden; */
 
     .main {
         min-height: 70vh;
