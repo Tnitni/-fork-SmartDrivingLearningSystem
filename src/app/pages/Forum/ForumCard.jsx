@@ -16,12 +16,12 @@ export default function ForumCard({
     };
 
     const actions = [
-        { id: 'Like', icon: 'fa-solid fa-thumbs-up', color: '#538DFF', force: true, },
-        { id: 'Heart', icon: 'fa-solid fa-heart', color: '#F74C61', force: true, },
-        { id: 'Haha', icon: 'fa-solid fa-face-laugh-squint', color: '#FFDA61', force: true, },
-        { id: 'Wow', icon: 'fa-solid fa-face-surprise', color: '#FFDA61', force: true, },
-        { id: 'Sad', icon: 'fa-solid fa-face-frown', color: '#FFDA61', force: true, },
-        { id: 'Angry', icon: 'fa-solid fa-angry', color: '#FA8662', force: true, },
+        { id: 'Like', icon: 'fa-solid fa-thumbs-up', color: '#538DFF', background: 'linear-gradient(to bottom, #538DFF, #538DFF)', force: true, },
+        { id: 'Heart', icon: 'fa-solid fa-heart', color: '#F74C61', background: 'linear-gradient(to bottom, #F74C61, #F74C61)', force: true, },
+        { id: 'Haha', icon: 'fa-solid fa-face-laugh-squint', color: '#FFDA61', background: 'linear-gradient(to bottom, #FFDA61, #FFDA61)', force: true, },
+        { id: 'Wow', icon: 'fa-solid fa-face-surprise', color: '#FFDA61', background: 'linear-gradient(to bottom, #FFDA61, #FFDA61)', force: true, },
+        { id: 'Sad', icon: 'fa-solid fa-face-frown', color: '#FFDA61', background: 'linear-gradient(to bottom, #FFDA61, #FFDA61)', force: true, },
+        { id: 'Angry', icon: 'fa-solid fa-angry', color: '#FA8662', background: 'linear-gradient(to bottom, #F74D61, #FFDA61)', force: true, },
     ];
 
     return (
@@ -29,6 +29,9 @@ export default function ForumCard({
             <div className='content'>
                 <h2>{post.title}</h2>
                 <p>{post.content}</p>
+            </div>
+            <div className='react-count'>
+                <i />
             </div>
             <div className='react-comment'>
                 <div
@@ -38,11 +41,14 @@ export default function ForumCard({
                 >
                     <button
                         className='main-btn'
-                        style={{ backgroundColor: reaction ? reaction?.color + '40' : '#2D3644' }}
-                        onClick={() => handleClickReact({ id: 'Like', icon: 'fa-solid fa-thumbs-up', color: '#538DFF', force: false, })}
+                        style={{ backgroundColor: reaction ? reaction?.color + '66' : '#2D3644' }}
+                        onClick={() => handleClickReact({ id: 'Like', icon: 'fa-solid fa-thumbs-up', color: '#538DFF', background: 'linear-gradient(to bottom, #538DFF, #538DFF)', force: false, })}
                     >
                         {reaction ?
-                            <i className={reaction.icon} style={{ color: reaction.color }} />
+                            <>
+                                <i className={reaction.icon} style={{ color: reaction.color, '--background': reaction.background }} />
+                                <span style={{ color: reaction.color }}>{reaction.id}</span>
+                            </>
                             :
                             <i className='fa-regular fa-thumbs-up' />
                         }
@@ -61,7 +67,7 @@ export default function ForumCard({
                                         style={{ animationDelay: `${index * 0.1}s` }}
                                         onClick={() => handleClickReact(item)}
                                     >
-                                        <i className={item.icon} style={{ color: item.color, animationDelay: `${index * 0.1}s` }} />
+                                        <i className={item.icon} style={{ color: item.color, animationDelay: `${index * 0.1}s`, '--background': item.background }} />
                                     </button>
                                 </div>
                             ))}

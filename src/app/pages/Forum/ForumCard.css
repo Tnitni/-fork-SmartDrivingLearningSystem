@@ -1,7 +1,6 @@
 .forum-card-container {
     background-color: var(--gray-2);
     border-radius: 8px;
-    /* overflow: hidden; */
 
     .content {
         padding: 20px;
@@ -39,10 +38,15 @@
                     .btn-item {
                         padding: 0;
                         background: transparent;
-                        animation: abcxyz 2s ease-in-out infinite;
+                        transform: rotate(-30deg);
+                        animation: swingingForum 2s ease-in-out infinite;
 
                         i {
                             font-size: 2rem;
+                            background-clip: text;
+                            background: var(--background);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
                             transition: transform 0.2s, margin 0.5s;
 
                             &:hover {
@@ -58,8 +62,24 @@
                 width: 100%;
                 color: var(--text-secondary);
                 background-color: #2D3644;
-                font-size: 1.25rem;
+                font-size: 1.5rem;
                 box-sizing: border-box;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .fa-solid {
+                    min-width: 40px;
+                    background-clip: text;
+                    background: var(--background);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+
+                span {
+                    font-size: 1rem;
+                }
 
                 &:hover {
                     color: var(--text-primary);
@@ -70,7 +90,7 @@
     }
 }
 
-@keyframes abcxyz {
+@keyframes swingingForum {
     0% {
         transform: rotate(-30deg);
     }
