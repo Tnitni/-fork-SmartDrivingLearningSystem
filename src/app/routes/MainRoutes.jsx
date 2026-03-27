@@ -47,6 +47,22 @@ import ExcelMultiSheetViewer from '../pages/ReadExcelData/ExcelMultiSheetViewer.
 import LearningProgress from '../pages/DrivingLicense/Unused/LearningProgress.jsx'
 import SelectedChapter from '../pages/DrivingLicense/ChapterLesson/SelectedChapter.jsx'
 
+import DashboardOverview from '../pages/InstructorPages/DashboardOverview.jsx'
+import PendingPosts from '../pages/InstructorPages/PendingPosts.jsx'
+import PendingPostsWithModal from '../pages/InstructorPages/PendingPostsWithModal.jsx'
+import ContentErrorReportsWithModal from '../pages/InstructorPages/ContentErrorReportsWithModal.jsx'
+import ContentErrorReports from '../pages/InstructorPages/ContentErrorReports.jsx'
+import CommunityReports from '../pages/InstructorPages/CommunityReports.jsx'
+import CommunityReportsWithModal from '../pages/InstructorPages/CommunityReportsWithModal.jsx'
+import ChangeRequests from '../pages/InstructorPages/ChangeRequests.jsx'
+import ChangeRequestsWithModal from '../pages/InstructorPages/ChangeRequestsWithModal.jsx'
+import UserWarningModal from '../pages/InstructorPages/UserWarningModal.jsx'
+import ContentModerationDetailModal from '../pages/InstructorPages/ContentModerationDetailModal.jsx'
+import ChangeRequestConfirmModal from '../pages/InstructorPages/ChangeRequestConfirmModal.jsx'
+import ChapterManagement from '../pages/InstructorPages/ChapterManagement.jsx'
+import ChapterManagementAddModal from '../pages/InstructorPages/ChapterManagementAddModal.jsx'
+
+
 export default function MainRoutes() {
     return (
         <BrowserRouter>
@@ -93,6 +109,22 @@ export default function MainRoutes() {
                     <Route path='question-management' element={<QuestionManagement />} />
                     <Route path='lesson-management' element={<LessonManagement />} />
                 </Route>
+
+                <Route path='/instructor/dashboard' element={<DashboardOverview />} />
+                <Route path='/instructor/pending-posts' element={<PendingPosts />} />
+                <Route path='/instructor/pending-posts/modal' element={<PendingPostsWithModal />} />
+                <Route path='/instructor/content-error-reports' element={<ContentErrorReports />} />
+                <Route path='/instructor/content-error-reports/modal' element={<ContentErrorReportsWithModal />} />
+                <Route path='/instructor/community-reports' element={<CommunityReports />} />
+                <Route path='/instructor/community-reports/modal' element={<CommunityReportsWithModal />} />
+                <Route path='/instructor/change-requests' element={<ChangeRequests />} />
+                <Route path='/instructor/change-requests/modal' element={<ChangeRequestsWithModal />} />
+                <Route path='/instructor/user-warning-modal' element={<UserWarningModal />} />
+                <Route path='/instructor/content-moderation-detail-modal' element={<ContentModerationDetailModal />} />
+                <Route path='/instructor/change-request-confirm-modal' element={<ChangeRequestConfirmModal />} />
+                <Route path='/instructor/chapter-management' element={<ChapterManagement />} />
+                <Route path='/instructor/chapter-management/add' element={<ChapterManagementAddModal />} />
+
             </Routes>
 
 
